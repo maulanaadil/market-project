@@ -1,0 +1,972 @@
+<style>
+        #example-vertical h3{
+            font-size: 12px;
+            padding: 5px;
+        }
+        .ads{
+            border: 0px;
+        }
+        label{
+            font-size: 14px;
+            font-weight: 550;
+        }
+    </style>
+      <style type="text/css">
+        .title {
+          height: 34px;
+          opacity: 0.9;
+          font-family: 'Roboto', sans-serif;
+          font-size: 18px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          list-style: none;
+          letter-spacing: normal;
+          color: #000000;
+        }
+        .content {
+          width: 262px;
+          height: 32px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 14px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #000000;
+        }
+        .child-content {
+          width: 175px;
+          height: 32px;
+          font-family: 'Roboto', sans-serif;
+          font-size: 12px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #000000;
+        }
+        .margin-bettwen-row{
+          margin: 10px 0px;
+        }
+      </style>
+    <!-- persona -->
+    <style lang="css" scoped>
+        #titles{
+            color:black;
+            font-family: 'Roboto';
+        }
+        #container-interest{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        
+        .container{
+            margin-left: 5px; 
+            margin-right: 16px; 
+            /* margin-top: 51px; */
+            margin-bottom: 16px;
+            align-items: left;
+            width: 270px;
+            height: 220px;
+            border-radius: 5px;
+            border: 1px #eee solid;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        
+        .container .container-header {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        
+        .container .header-title {
+            display: flex;
+            flex-direction: row
+        }
+        
+        .container .header-title img{
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .container .header-segment {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container .header-segment > .title {
+            font-size: 12px;
+        }
+        
+        .container .header-segment .body {
+            font-size: 12px;
+            font-weight: 500;
+        }
+        
+        
+        .container h5 {
+            margin-top: 10px;
+            margin-left: 10px;
+            font-size: 14px;
+            font-family: lato;
+            font-weight: 500;
+            
+        }
+        
+        #interest {
+            margin-top: 19px;
+            font-size: 15px;
+            font-weight: 500;
+            width: 100%;
+        }
+        
+        #demography {
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            width: 100%;
+            color: black;
+        }
+        
+        #action-button{
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        #btn-persona{
+            margin-top: 10px;
+            margin-left: 1px;
+            margin-right: 1px;
+            background: white;
+            box-shadow: none;
+            width: 151px;
+            height: 40px;
+            border-radius: 2px;
+            border: solid 1px #459adf;
+            color:#459adf;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        #target-segment{
+            /* margin-right: 10px;
+            background: #3883e2;
+            box-shadow: none;
+            color: white;
+            width: 136px;
+            height: 34px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer; */
+        }
+        </style>
+        <style lang="css" scoped>
+      
+          .badge-primary{
+              font-size: 14px;
+              font-weight: 500;
+              color: #ffffff;
+              background-color: #3883e2;
+              margin-right: 5px;
+          }
+          
+          .badge-pill {
+              padding: 1em;
+              /* padding-left: 1em; */
+              padding-top: 0.5em;
+              padding-bottom: 0.5em;
+              border:0px;
+              border-radius: 10rem;
+              font-size: 12px;
+          }
+          
+          </style>
+      <style lang="css" scoped>
+      
+        #container-dm{
+            display: flex;
+            /* flex-direction: row; */
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        
+        #container-dm .demography-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+        }
+        
+        #container-dm > .demography-info > #title {
+            font-size: 12px;
+            /* margin-right: 30px; */
+        }
+        
+        #container-dm > .demography-info #body {
+            font-size: 12px;
+            font-weight: 550;
+            /* margin-right: 30px; */
+        }
+        .hmm-list {
+          max-height: 506px;
+          overflow-y: scroll;
+        }
+        .tweet-list{
+          width: 100%;
+          height: auto;
+        }
+        .tweet-list-img {
+          flex: none;
+          align-items: center;
+        }
+    
+        .tweet-list-img img {
+          width: 100%;
+        }
+        .tweet-list-header{
+          margin:5px;
+          color : #000000;
+          font-weight: 550;
+        }
+        .tweet-list-content {
+          align-items: flex-start;
+        }
+        .tweet{
+          text-align: left;
+          font-size: 12px;
+        }
+        .post-score{
+            padding: 2.5px 5px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold
+        }
+        .post-score.good {
+          background-color: #2ecc71;
+        }
+        .post-socre.fair {
+          background-color: #f1c40f;
+        }
+        .post-score.bad {
+          background-color: #e74c3c
+        }
+        .scroll-vertical {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: scroll 
+        }
+        .scroll-vertical .container {
+              flex: 0 0 auto;
+        }
+        ::-webkit-scrollbar {
+            width: 4px;
+            height: 7px;
+        }
+    
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #03A9F4; 
+        }
+    
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1976D2; 
+        }
+        div{
+          font-family: 'Lato', sans-serif;
+        }
+        .container-ads{
+            background: #ffffff;
+        }
+        .list-group-item{
+            border:0px;
+        }
+        .chip {
+          display: inline-block;
+          padding: 0 15px;
+          height: 30px;
+          font-size: 14px;
+          line-height: 30px;
+          border-radius: 25px;
+          background-color: #3883e2;
+          color : #FFF;
+      }
+
+
+      .closebtn {
+          padding-left: 10px;
+          color: #FFF;
+          font-weight: bold;
+          float: right;
+          font-size: 18px;
+          cursor: pointer;
+      }
+
+      .closebtn:hover {
+          color: #000;
+      }
+        </style>
+<div class="col-lg-12 col-md-5">
+    <div class="row center-block">
+        <div class="col-lg-10 container-ads center-block">
+            <!-- content -->
+            <div id="example-vertical" style="margin:20px;">
+                    <h3>Create Campaign</h3>
+                    <section>
+                        <div class="card" style="width: 100%;">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                <span class="title">Step 1 : Create Campaign</span>
+                              </li>
+                              <li class="list-group-item">
+                                 <span class="content">Campaign</span>
+                        
+                                  <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Campaign Name</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 10px;" class="form-control form-control-sm" id="ad_campaign_name" ng-model="AdsCtrl.ads.campaign_name">
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                    <div class="col-md-3">
+                                      <span class="child-content">Campaign Objective</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <select class="form-control form-control-sm" name="" id="ad_objective" ng-model="AdsCtrl.ads.objective">
+                                        <option value="APP_ENGAGEMENTS">APP ENGAGEMENTS</option>
+                                        <option value="APP_INSTALLS">APP INSTALLS</option>
+                                        <option value="AWARENESS">AWARENESS</option>
+                                        <option value="FOLLOWERS">FOLLOWERS</option>
+                                        <option value="TWEET_ENGAGEMENTS">TWEET ENGAGEMENTS</option>
+                                        <option value="VIDEO_VIEWS">VIDEO VIEWS</option>
+                                        <option value="VIDEO_VIEWS_PREROLL">VIDEO VIEWS PREROLL</option>
+                                        <option value="WEBSITE_CLICKS">WEBSITE CLICKS</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                        
+                                  <span class="content" >Ad Account</span>
+                                  <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Ad Group Name</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 10px;" class="form-control form-control-sm" id="ad_group_name" ng-model="AdsCtrl.ads.ad_group_name">
+                                    </div>
+                                  </div>
+                        
+                                  <!-- <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Date (Optional)</span>
+                                    </div>
+                                    <div class="col-md-4"> -->
+                                      <!-- <input type="text" class="form-control form-control-sm" > -->
+                                        <!-- <div id="datetimepicker" class="input-append date">
+                                          <input type="text" placeholder="Start Date" id="ad_date1" style="padding: 10px;">
+                                          <span class="add-on" style="height: 32px; background: white;">
+                                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4"> -->
+                                        <!-- <input type="text" class="form-control form-control-sm" > -->
+                                          <!-- <div id="datetimepicker2" class="input-append date">
+                                            <input type="text" placeholder="End Date" id="ad_date2" style="padding: 10px;">
+                                            <span class="add-on" style="height: 32px; background: white;">
+                                              <i  data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                            </span>
+                                          </div>
+                                      </div>
+                                  </div> -->
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Set a total group budget (Optional)</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 15px;" class="form-control form-control-sm" id="ad_total_budget" ng-model="AdsCtrl.ads.total_group_budget">
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                    <div class="col-md-3">
+                                      <span class="child-content">Bid Type</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <select class="form-control form-control-sm" name="" id="ad_bid_type" ng-model="AdsCtrl.ads.bid_type">
+                                          <option value="AUTO">AUTO</option>
+                                        <option value="AWARENESS">AWARENESS</option>
+                                        <option value="FOLLOWERS">FOLLOWERS</option>
+                                        <option value="WEBSITE_CLICKS">WEBSITE_CLICKS</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                      <div class="col-md-3">
+                                        <span class="child-content">Optimization Preference</span>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <select class="form-control form-control-sm" name="" id="ad_optimization" ng-model="AdsCtrl.ads.optimization">
+                                          <option value="DEFAULT">DEFAULT</option>
+                                          <option value="ENGAGEMENTS">ENGAGEMENTS</option>
+                                          <option value="WEBSITE_CONVERSIONS">WEBSITE_CONVERSIONS</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                        
+                              </li>
+                            </ul>
+                          </div>
+                    </section>
+                    <h3>Audience</h3>
+                    <section>
+                        <div class="card" style="width: 100%;">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                <span class="title">Step 2 : Audience</span>
+                              </li>
+                              <li class="list-group-item">
+                                 <span class="content">Choose from your persona</span>
+                        
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <!-- persona -->
+                                    <div class="row scroll-vertical" style="margin:0px" >
+                                        <div class="col-md-4 container" ng-repeat="persona in AdsCtrl.persona">
+                                                <div class="container-header">
+                                                    <div class="header-title">
+                                                        <img ng-src="{{persona.user[0].photo}}">
+                                                        <h5 id="titles">{{persona.cluster_name}}</h5>
+                                                    </div>
+                                                    <div class="header-segment" id="titles">
+                                                        <div style="margin:0px; margin-bottom: 10px">
+                                                                <input type="radio" name="persona" value="{{persona.cluster_number}}" style="margin-right: 5px;padding: 0px; float:right" onclick="fillForm(this)">
+                                                        </div>
+                                                        <div class="title">Segment Size</div> 
+                                                        <div class="body">{{persona.cluster_size * 100}}% of 1000</div>
+                                                    </div>
+                                                </div>
+                                                <section id="interest">
+                                                    <span id="titles">Interested In</span>
+                                                    <section id="container-interest">
+                                                      <button class="badge-pill badge-primary" ng-repeat="interest in persona.behaviour.interest">{{interest.interest_name}}</button>
+                                                    </section>
+                                                </section>
+                                                <section id="demography">
+                                                    Demographic Overview
+                                                    <section id="container-dm">
+                                                      <div class="demography-info">
+                                                          <div id="title">Location</div>
+                                                          <div id="body">{{persona.demographics.location[0].location_name}}</div>
+                                                      </div>
+                                                      <div class="demography-info">
+                                                        <div id="title">Gender</div>
+                                                        <div id="body" ng-if="persona.demographics.gender[0].percentage > persona.demographics.gender[1].percentage">{{persona.demographics.gender[0].gender}}</div>
+                                                        
+                                                        <div id="body" ng-if="persona.demographics.gender[1].percentage > persona.demographics.gender[0].percentage">{{persona.demographics.gender[1].gender}}</div>
+                                                      </div>
+                                                      <div class="demography-info">
+                                                          <div id="title">Age Category</div>
+                                                          <div id="body">{{persona.demographics.age[0].age_category}}</div>
+                                                      </div>
+                                                  </section>
+                                                </section>
+                                            </div>
+                                       </div>
+                                    <!-- endpersona -->
+                        
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Your Audience</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 10px;" class="form-control form-control-sm" id="ad_audience" ng-model="AdsCtrl.ads.audience_name">
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Location</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 15px;" class="form-control form-control-sm" id="ad_location" ng-model="AdsCtrl.ads.location">
+                                    </div>
+                                </div>
+                                <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Age</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                            <div class="radio">
+                                                    <label><input type="radio" name="optradio" onclick="closeAges()" ng-model="AdsCtrl.ads.age">All Age</label>
+                                            </div>
+                                            <div class="radio">
+                                                    <label><input type="radio" name="optradio" onclick="showAges()" id="ad_age_range" ng-model="AdsCtrl.ads.age">Age Range</label>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row margin-bettwen-row" id="ages" style="display:none; margin-left: 25%;">
+                                  <div class="col-md-3">
+                                    <select class="form-control form-control-sm" id="ad_age1" ng-model="AdsCtrl.ads.age_start">
+                                    </select>
+                                  </div>
+                                  <div class="col-md-2">
+                                  </div>
+                                  <div class="col-md-3">
+                                    <select class="form-control form-control-sm" id="ad_age2" ng-model="AdsCtrl.ads.age_end">
+                                    </select>
+                                  </div>
+                              </div>
+                                <div class="row margin-bettwen-row" >
+                                      <div class="col-md-3">
+                                        <span class="child-content">Gender</span>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <select class="form-control form-control-sm" name="" id="ad_gender" ng-model="AdsCtrl.ads.gender">
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="row margin-bettwen-row" >
+                                         <div class="col-md-3">
+                                            <span class="child-content">Audience Feature</span>
+                                          </div>
+                                          <div class="col-md-8">
+                                            <input type="text" style="padding: 15px;" class="typeahead form-control" data-provide="typeahead" id="interest-input">
+                                          </div>
+                                    </div>
+                                    <div class="row margin-bettwen-row" style="display: none" id="chips_audience">
+                                        <div class="col-md-3">
+                                            <span class="child-content"></span>
+                                          </div>
+                                          <div class="col-md-8" id="chips">
+                                              
+                                          </div>
+                                        
+                                    </div>
+                              </li>
+                            </ul>
+                          </div>
+                    </section>
+                    <h3>Budget and Schedule</h3>
+                    <section>
+                            <div class="card" style="width: 100%;">
+                                    <ul class="list-group list-group-flush">
+                                      <li class="list-group-item">
+                                        <span class="title">Step 3 :Budget and Schedule</span>
+                                      </li>
+                                      <li class="list-group-item">
+                                         <span class="content">Budget</span>
+                                
+                                
+                                          <div class="row margin-bettwen-row" >
+                                            <div class="col-md-3">
+                                              <span class="child-content">Set Daily Budget</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                              <input type="text" style="padding: 10px;" class="form-control form-control-sm" ng-model="AdsCtrl.ads.daily_budget">
+                                            </div>
+                                          </div>
+                                
+                                          <div class="row margin-bettwen-row">
+                                            <div class="col-md-3">
+                                              <span class="child-content">Set Total Budget</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                 <input type="text" style="padding: 10px;" class="form-control form-control-sm" ng-model="AdsCtrl.ads.total_budget">
+                                            </div>
+                                          </div>
+                                
+                                          <span class="content" >Schedule</span>
+                                
+                                
+                                          <div class="row margin-bettwen-row" >
+                                            <div class="col-md-3">
+                                              <span class="child-content">Schedule</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                    <div class="radio">
+                                                            <label><input type="radio" name="optradio" onclick="closeDates()">Start immediately, Run continously</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                            <label><input type="radio" name="optradio" onclick="showDates()">Set a start and end date</label>
+                                                    </div>
+                                            </div>
+                                          </div>
+                                          
+                                            <div class="row margin-bettwen-row" id="dates" style="display: none; background:#eee;width:75%; margin-left:70px; padding:30px">
+                                                    <div class="row margin-bettwen-row"  >
+                                                    <div class="col-md-3">
+                                                            <span class="child-content">Start</span>
+                                                        </div>
+                                                         <div class="col-md-8">
+                                                              <div id="datetimepicker2" class="input-append date">
+                                                                <input type="text" placeholder="Specify Time" id="date-budget1" class="flatpickr form-flatpickr form-control" data-mindate="today" data-enabletime="true" data-time_24hr="true" data-timeFormat="H:i" style="padding: 10px;width: 100% !important;" ng-model="AdsCtrl.ads.start_date">
+                                                              </div>
+                                                          </div>
+                                                     </div>
+                                                     <div class="row margin-bettwen-row" id="dates" >
+                                                            <div class="col-md-3">
+                                                                    <span class="child-content">End</span>
+                                                                </div>
+                                                                 <div class="col-md-8">
+                                                                      <div id="datetimepicker2" class="input-append date">
+                                                                        <input type="text" placeholder="Specify Time" id="date-budget2" class="flatpickr form-flatpickr form-control" data-mindate="today" data-enabletime="true" data-time_24hr="true" data-timeFormat="H:i" style="padding: 10px; width: 100% !important;" ng-model="AdsCtrl.ads.end_date">
+                                                                      </div>
+                                                                  </div>
+                                                             </div>
+                                            </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                    </section>
+                    <h3>Content</h3>
+                    <section>
+                      <div class="card" style="width: 100%;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <span class="title">Step 4 :Content</span>
+                          </li>
+                          <li class="list-group-item">
+                             <span class="content">Content</span>
+                    
+                    
+                              <div class="row margin-bettwen-row" >
+                                <div class="col-md-12">
+                                  <label for="" style="font-size: 550">Choose Your Content</label> <br>
+                                  <input placeholder="Search content" type="text"class="form-control form-control" style="padding: 10px;" >
+                                </div>
+                              </div>
+                              <div class="row margin-bettwen-row" ng-if="AdsCtrl.feed.length > 0">
+                                  <div class="col-md-12">
+                                    <div class="tweet-list">
+                                        <div class="row" style="margin:0px; padding: 0px; margin-left:5px;border-bottom: 1px solid #bbb9b9; margin-top:10px;" ng-repeat="feed in AdsCtrl.feed">
+                                            <div class="col-md-2 tweet-list-img" style="margin:0px; padding: 0px;">
+                                              <div class="row" style="margin:0px;">
+                                                  <div class="col-md-1" style="margin:0px;">
+                                                      <input type="radio" name="tweet-ads"  value="{{feed.id_str}}" style="margin-top:20px; margin-left:5px;" onclick="setTweet(this)" ng-model="AdsCtrl.ads.tweet_id">
+                                                  </div>
+                                                  <div class="col-md-2" style="margin:0px; padding: 0px">
+                                                      <img ng-src="{{feed.user.profile_image_url}}" class="img-circle" style="width: 50px;  margin-left:10px;">
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            <div class="col-md-9 tweet-list-content" style="margin-left:20px; padding: 0px">
+                                              <div class="tweet-list-header">
+                                                 {{feed.user.name}} &nbsp;@{{feed.user.screen_name}}
+                                              </div>
+                                              <div class="tweet">
+                                                  <p>{{feed.text}} </p>
+                                              </div>
+                                            </div>
+                                            <div class="row" style="margin:0px; margin-bottom:10px;">
+                                                <div class="col-md-4">
+                                                    <img ng-src="{{feed.entities.media[0].media_url}}" class="img-responsive" style="width: 40px;  margin-left:40px;" ng-if="feed.entities.media[0].media_url !== undefined">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div id="post-score">
+                                                        <span>
+                                                          <label for="">Image Score </label> 
+                                                          <br> 
+                                                          <span class="post-score good">80/100 (Good Image)</span>
+                                                        </span>
+                                                      </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div id="post-score">
+                                                        <span>
+                                                          <label for="">Text Score </label> 
+                                                          <br> 
+                                                          <span class="post-score good">80/100 (Good Text)</span>
+                                                        </span>
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </section>
+                    <h3>Review and Publish</h3>
+                    <section>
+                        <div class="card" style="width: 100%;">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                <span class="title">Step 5 : Review and Publish</span>
+                              </li>
+                              <li class="list-group-item">
+                                 <span class="content">Review</span>
+                        
+                                 
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content" style="font-weight:550;">Campaign Name</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;" id="v_campaign">Campaign for Persona</span>
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Campaign Date</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;" id="v_campaign_date">12 September 2018 - 31 September 2018</span>
+                                    </div>
+                                  </div>
+                        
+                                  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Ad Group Name</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;" id="v_ad_group">Awarness Group Ad</span>
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Ad group start date</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;" id="v_start_date">12 September 2018</span>
+                                    </div>
+                                  </div>
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Add group bid</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;" id="v_bid">Automatic Bid</span>
+                                    </div>
+                                  </div>
+                                  <div class="row margin-bettwen-row">
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Audience Targeting</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;" id="v_audience">1 Audience Targeting</span>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row" id="v_tweet">
+                                      
+                                  </div>
+                                  <div class="row margin-bettwen-row">
+                                      <div class="col-md-4" style="float:right;">
+                                          <button class="btn btn-primary" style="float:right; margin-right:30px;" ng-click="AdsCtrl.sendAds(AdsCtrl.ads)">Post</button>
+                                      </div>
+                                  </div>
+                              </li>
+                            </ul>
+                          </div>
+                    </section>
+                </div>
+            <!-- content -->
+        </div>
+            
+    </div>
+        
+</div>
+
+<script>
+      $(function(){
+            console.log("kakak ")
+            var $input = $(".typeahead");
+                  $input.typeahead({
+                    source: [
+                      {id: "someId1", name: "Display name 1"},
+                      {id: "someId2", name: "Display name 2"}
+                    ],
+                    autoSelect: true
+                  });
+                  $input.change(function() {
+                    var current = $input.typeahead("getActive");
+                    if (current) {
+                      // Some item from your model is active!
+                      if (current.name == $input.val()) {
+                        // This means the exact match is found. Use toLowerCase() if you want case insensitive match.
+                      } else {
+                        // This means it is only a partial match, you can either add a new item
+                        // or take the active if you don't want new items
+                      }
+                    } else {
+                      // Nothing is active so it is a new value (or maybe empty value)
+                    }
+                  });
+            // $('#interest-input').tagit({
+            //     allowSpaces: true,
+            //     availableTags: ['Tags', 'Mana', 'Jajajaj']
+            // });      
+        });  
+        $("#example-vertical").steps({
+              headerTag: "h3",
+              bodyTag: "section",
+              transitionEffect: "slideLeft",
+              stepsOrientation: "vertical",
+              enableFinishButton: false,
+          });
+      $(function(){
+        $(`a[href=#next]`).click(function(){
+          $('#v_campaign').text('');
+          $('#v_campaign_date').text('');
+          $('#v_ad_group_name').text('');
+          $('#v_start_date').text('');
+          $('#v_bid').text('');
+          $('#v_audience').text('');
+          $('#v_campaign').text($('#ad_campaign_name').val());
+          $('#v_campaign_date').text($('#date-budget1').val()+' until '+$('#date-budget2').val());
+          $('#v_ad_group_name').text($('#ad_group_name').val());
+          $('#v_start_date').text($('#date-budget1').val());
+          $('#v_bid').text($('#ad_bid_type').val());
+          $('#v_audience').text($('#ad_audience').val());
+        });
+      })
+      selectFill();
+
+      function setTweet(tweet){
+        var id = tweet.value;
+        $.get('/api/tweet-id?id='+id, function(data, response){
+          var tweets = data.data;
+          $('#v_tweet').empty();
+          $('#v_tweet').append(`<div class="row" style="margin:0px; padding: 0px; margin-left:5px;border-bottom: 1px solid #bbb9b9; margin-top:30px;">
+                                          <div class="col-md-2 tweet-list-img" style="margin:0px; padding: 0px;">
+                                            <div class="row" style="margin:0px;">
+                                                <div class="col-md-2" style="margin:0px; padding: 0px">
+                                                    <img src="${tweets.user.profile_image_url}" class="img-circle" style="width: 50px;  margin-left:10px;">
+                                                </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-9 tweet-list-content" style="margin-left:20px; padding: 0px">
+                                            <div class="tweet-list-header">
+                                                ${tweets.user.name} &nbsp;@${tweets.user.screen_name}
+                                            </div>
+                                            <div class="tweet">
+                                                <p>${tweets.text}</p>
+                                            </div>
+                                          </div>
+                                          <div class="row" style="margin-bottom:10px;">
+                                              <div class="col-md-4">`+
+                                                  (jQuery.isEmptyObject(tweets.entities.media) ? '' : '<img src="'+tweets.entities.media[0].media_url+'" class="img-responsive" style="width: 40px;  margin-left:40px;">')
+                                              +`</div>
+                                          </div>
+                                      </div>`);
+        });
+      }
+      function fillForm(persona){
+        const cluster_id = persona.value;
+        const url_personas = location.origin + '/api/audience/'+cluster_id;
+
+        $.get(url_personas, (response)=>{
+            const result = response.results[0];
+            $('#ad_audience').val('Ad '+result.cluster_name);
+            $('#ad_age_range').attr('checked', true);
+            $('#ad_location').val(result.demographics.location[0].location_name);
+            $('#ages').css('display', '');
+            $('#chips_audience').css('display', '');
+            var interest = result.behaviour.interest;
+            $('#chips').empty();
+            interest.map((val)=>{
+              $('#chips').append(`<div class="chip">
+                        ${val.interest_name}
+                        <input type="hidden" name="interest[]" value="${val.interest_name}" ng-model="AdsCtrl.ads.interest[]">
+                  <span class="closebtn" onclick="this.parentElement.style.display='none'">&times;</span>
+            </div>`);
+            })
+            const age = result.demographics.age[0].age_range;
+            const age1 = age.split('-');
+            $('#ad_age1').append(`<option value="${age1[0]}" selected>${age1[0]}</option>`)
+            $('#ad_age2').append(`<option value="${age1[1]}" selected>${age1[1]}</option>`)
+            $('#ad_gender').empty();
+            
+            const current_gender = result.demographics.gender;
+            let selected_gender = 'Male';
+            if(current_gender[0].percentage > current_gender[1].percentage){
+                selected_gender = 'Female';
+            }
+            const gender = ['Male', 'Female', 'Other'];
+            gender.map((val)=>{
+              if(val === selected_gender){
+                $('#ad_gender').append(`<option value="${val}" selected>${val}</option>`);
+              }
+              $('#ad_gender').append(`<option value="${val}">${val}</option>`);
+            })
+        });
+
+      }
+      function selectFill(){
+        for(var i = 17; i<=50;i++){
+          $('#ad_age1').append(`<option value="${i}"> ${i} </option>`);
+          $('#ad_age2').append(`<option value="${i}"> ${i} </option>`);
+        }
+        var gender = ['Male', 'Female', 'Other'];
+        gender.map((val)=>{
+          $('#ad_gender').append(`<option value="${val}">${val}</option>`);
+        })
+      }
+      function showDates(){
+          $('#dates').css('display', '');
+      }
+      function closeDates(){
+          $('#dates').css('display', 'none');
+      }
+      function showAges(){
+          $('#ages').css('display', '');
+      }
+      function closeAges(){
+          $('#ages').css('display', 'none');
+      }
+    </script>
+<script type="text/javascript">
+  flatPickrElement = document.getElementById('date-budget1')
+  flatPickrElement2 = document.getElementById('date-budget2')
+  flatpickr(flatPickrElement, {
+    // noCalendar: true,
+    minDate: 'today'
+  })
+  flatpickr(flatPickrElement2, {
+    // noCalendar: true,
+    minDate: 'today'
+  })
+  // $('#datetimepicker').datetimepicker({
+  //   format: 'dd/MM/yyyy hh:mm:ss',
+  //   language: 'pt-BR'
+  // });
+  // $('#datetimepicker2').datetimepicker({
+  //   format: 'dd/MM/yyyy hh:mm:ss',
+  //   language: 'pt-BR'
+  // });
+</script>

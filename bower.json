@@ -1,0 +1,26 @@
+{
+  "name": "twikipedia-apps",
+  "description": "Masih Undefined",
+  "main": "server.js",
+  "authors": [
+    "Muhammad Rivki <Muhammad.Rivki@outlook.com>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/mikqi/twikipedia-apps",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "^1.5.7",
+    "angular-table": "*",
+    "angular-ui-router": "^0.3.1",
+    "flatpickr": "flatpickr-calendar#^1.8.7",
+    "angular-file-model": "^0.3.1",
+    "angular-powerbi": "^1.0.0"
+  }
+}

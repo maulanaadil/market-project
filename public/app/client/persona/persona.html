@@ -1,0 +1,221 @@
+<style lang="css" scoped>
+  #titles{
+      color:black;
+      font-family: 'Roboto'
+  }
+  #container-interest{
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      margin-top: 10px;
+  }
+  
+  .container{
+      margin-left: 0px; 
+      margin-right: 16px; 
+      /* margin-top: 51px; */
+      margin-bottom: 16px;
+      align-items: left;
+      width: 330px;
+      /* height: 271px; */
+      border-radius: 5px;
+      background-color: #ffffff;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 20px;
+  }
+  
+  .container .container-header {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-between;
+  }
+  
+  .container .header-title {
+      display: flex;
+      flex-direction: row
+  }
+  
+  .container .header-title img{
+      border-radius: 50%;
+      width: 40px;
+      height: 40px;
+  }
+  
+  .container .header-segment {
+      display: flex;
+      flex-direction: column;
+  }
+  
+  .container .header-segment > .title {
+      font-size: 13px;
+  }
+  
+  .container .header-segment .body {
+      font-size: 15px;
+      font-weight: 500;
+  }
+  
+  
+  .container h5 {
+      margin-top: 10px;
+      margin-left: 10px;
+      font-size: 18px;
+      font-family: lato;
+      font-weight: 500;
+      
+  }
+  
+  #interest {
+      margin-top: 19px;
+      font-size: 15px;
+      font-weight: 500;
+      width: 100%;
+  }
+  
+  #demography {
+      margin-top: 16px;
+      font-size: 15px;
+      font-weight: 500;
+      width: 100%;
+      color: black;
+  }
+  
+  #action-button{
+      margin-top: 20px;
+      width: 100%;
+      text-align: center;
+  }
+  
+  #btn-persona{
+      margin-top: 10px;
+      margin-left: 1px;
+      margin-right: 1px;
+      background: white;
+      box-shadow: none;
+      width: 140px;
+      height: 40px;
+      border-radius: 2px;
+      border: solid 1px #459adf;
+      color:#459adf;
+      font-size: 14px;
+      cursor: pointer;
+  }
+  
+  #target-segment{
+      /* margin-right: 10px;
+      background: #3883e2;
+      box-shadow: none;
+      color: white;
+      width: 136px;
+      height: 34px;
+      border: none;
+      font-size: 14px;
+      cursor: pointer; */
+  }
+  </style>
+  <style lang="css" scoped>
+
+    .badge-primary{
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+        background-color: #3883e2;
+        margin-right: 5px;
+    }
+    
+    .badge-pill {
+        padding: 1em;
+        /* padding-left: 1em; */
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        border:0px;
+        border-radius: 10rem;
+        font-size: 15px;
+    }
+    
+    </style>
+<style lang="css" scoped>
+
+  #container-dm{
+      display: flex;
+      /* flex-direction: row; */
+      justify-content: space-between;
+      margin-top: 5px;
+  }
+  
+  #container-dm .demography-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      
+  }
+  
+  #container-dm > .demography-info > #title {
+      font-size: 14px;
+      /* margin-right: 30px; */
+  }
+  
+  #container-dm > .demography-info #body {
+      font-size: 14px;
+      font-weight: 550;
+      /* margin-right: 30px; */
+  }
+  div{
+      font-family: 'Lato', sans-serif;
+    }
+  </style>
+<div class="col-lg-12 col-md-5">
+        <div class="page-header-title">
+                <h3>Persona Based on Your Follower Segment</h3>
+                <hr>
+              </div> 
+    <div class="row">
+            <div class="col-md-4 container" ng-repeat="data in persona.persona">
+                    <div class="container-header">
+                        <div class="header-title">
+                            <img ng-src="{{data.user[0].photo}}">
+                            <h5 id="titles">{{data.cluster_name}}</h5>
+                        </div>
+                        <div class="header-segment" id="titles">
+                            <div class="title">Segment Size</div> 
+                            <div class="body">{{data.cluster_size * 100}}% of 837</div>
+                        </div>
+                    </div>
+                    <section id="interest">
+                        <span id="titles">Interested In</span>
+                        <section id="container-interest">
+                          <button class="badge-pill badge-primary" ng-repeat="interest in data.behaviour.interest">{{interest.interest_name}}</button>
+                        </section>
+                    </section>
+                    <section id="demography">
+                        Demographic Overview
+                        <section id="container-dm">
+                          <div class="demography-info">
+                              <div id="title">Location</div>
+                              <div id="body">{{data.demographics.location[0].location_name}}</div>
+                          </div>
+                          <div class="demography-info">
+                              <div id="title">Gender</div>
+                              <div id="body" ng-if="data.demographics.gender[0].percentage > data.demographics.gender[1].percentage">{{data.demographics.gender[0].gender}}</div>
+                              
+                              <div id="body" ng-if="data.demographics.gender[1].percentage > data.demographics.gender[0].percentage">{{data.demographics.gender[1].gender}}</div>
+                          </div>
+                          <div class="demography-info">
+                              <div id="title">Age Category</div>
+                              <div id="body">{{data.demographics.age[0].age_category}}</div>
+                          </div>
+                      </section>
+                    </section>
+                    <section id="action-button center-block">
+                        <button id="btn-persona" ui-sref="persona-detail({id : data.cluster_number})">Persona Detail</button>
+                        <button id="btn-persona">Segment Target</button>
+                    </section>
+                </div>
+                
+    </div>
+        
+</div>

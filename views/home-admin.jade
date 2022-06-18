@@ -1,0 +1,9 @@
+extends layout-admin
+
+block content
+  
+  if !user
+    include admin/login
+  else
+    div(ng-app='TwikipediaAdmin')
+      include admin/home

@@ -1,0 +1,483 @@
+<style lang="css" scoped>
+    .container {
+        margin-left: 0%;
+    }
+
+    .content {
+        min-height: 100vh;
+        padding-bottom: 16px;
+        padding-left: 10px;
+        padding-right: 16px;
+        background-color: #F1F4F9;
+    }
+
+    .content>.title>.inline {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: 800;
+    }
+
+    .content {
+        margin-top: 16px;
+    }
+
+    .content .container-main-content {
+        margin-top: -28px;
+    }
+
+    .content .container-keyword {
+        padding: 20px;
+        margin-top: 30px;
+        width: 90%;
+        height: 136px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .content .container-keyword h5 {
+        font-size: 14px;
+        font-weight : 400;
+    }
+
+    .content .container-keyword .container-search {
+        display: flex;
+        flex-direction: row;
+        align-content: flex-end;
+        margin-top: 10px;
+    }
+
+    .content .container-keyword input[type=text] {
+        font-size: 14px;
+        padding: 6px;
+        width: 80%;
+    }
+
+    .content .container-keyword button {
+        font-size: 16px;
+        padding: 5px;
+        width: 20%;
+        margin-left: 20px;
+        border: none;
+        background-color: #459ADF;
+        color: white;
+    }
+
+    .badge-primary{
+        font-size: 14px;
+        font-weight: 500;
+        color: #ffffff;
+        background-color: #459ADF;
+        margin-right: 5px;
+    }
+
+    .badge-pill {
+        padding: 1em;
+        /* padding-left: 1em; */
+        padding-top: 0.5em;
+        padding-bottom: 0.5em;
+        border:0px;
+        border-radius: 10rem;
+        font-size: 15px;
+    }
+
+    .content-title {
+        font-size: 12px;
+    }
+
+    .content-total {
+        font-weight: 800;
+        font-size: 14px;
+    }
+
+    .content .container-main-content>.container-total-post {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-total-post.col-md-3.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+    }
+
+    .content .container-main-content.container>.row .container-total-post.col-md-3.form-group>.content-total-post>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container>.row .container-total-post.col-md-3.form-group .content-total-post .container-content-total-post .content-body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .content .container-main-content.container>.row .container-total-post.col-md-3.form-group .content-total-post .container-content-total-post .content-body .total-post-caption .title {
+        font-weight: 800;
+        color: #66bb6a;
+        margin-left: 16px;
+        font-size: 36px;
+    }
+
+    .content .container-main-content>.container-total-engagement {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-total-engagement.col-md-3.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-left: 16px;
+    }
+
+    .content .container-main-content.container>.row .container-total-engagement.col-md-3.form-group>.content-total-engagement>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container>.row .container-total-engagement.col-md-3.form-group .content-total-engagement .container-content-total-engagement .content-body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .content .container-main-content.container>.row .container-total-engagement.col-md-3.form-group .content-total-engagement .container-content-total-engagement .content-body .total-engagement-caption .title {
+        font-weight: 800;
+        color: #66bb6a;
+        margin-left: 16px;
+        font-size: 36px;
+    }
+
+    .content .container-main-content>.container-post-format {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-post-format.col-md-3.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-left: 16px;
+    }
+
+    .content .container-main-content.container>.row .container-post-format.col-md-3.form-group>.content-post-format>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container>.row .container-post-format.col-md-3.form-group .content-post-format .content-body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .content .container-main-content.container>.row .container-post-format.col-md-3.form-group .content-post-format .content-body .post-format-caption .title {
+        font-weight: 800;
+        color: #459ADF;
+        font-size: 36px;
+    }
+
+    .item {
+        margin-right: 16px;
+    }
+
+    .content .container-main-content.container>.row .container-post-format.col-md-3.form-group .content-post-format .content-body-2 {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .content .container-main-content>.container-relevance-keyword {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-relevance-keyword.col-md-5.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-top: -24px;
+    }
+
+    .content .container-main-content.container>.row .container-relevance-keyword.col-md-5.form-group>.content-relevance-keyword>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container>.row .container-relevance-keyword.col-md-5.form-group .content-body {
+        display: flex;
+        align-items: center;
+        margin-left: 8px;
+    }
+
+    .content .container-main-content.container>.row .container-relevance-keyword.col-md-5.form-group .content-body .total-engagement-caption .title {
+        font-weight: 800;
+        color: #66bb6a;
+        font-size: 14px;
+    }
+
+
+    .content .container-main-content>.container-relevance-content {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-relevance-content.col-md-5.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-top: -24px;
+        margin-left: 16px;
+    }
+
+    .content .container-main-content.container>.row .container-relevance-content.col-md-5.form-group>.content-relevance-content>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container>.row .container-relevance-content.col-md-5.form-group .content-body {
+        display: flex;
+        align-items: center;
+        margin-left: 8px;
+    }
+
+    .content .container-main-content.container>.row .container-relevance-content.col-md-5.form-group .content-body .total-engagement-caption .title {
+        font-weight: 800;
+        color: #66bb6a;
+        font-size: 14px;
+    }
+
+    .engagement {
+        font-weight: 100;
+    }
+
+    td {
+        padding-top: 16px;
+    }
+
+    .link {
+        font-size: 8px;
+        color: #757575;
+        opacity: 0.8;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="content">
+            <div class="title">
+                <div class="page-header-title">
+                    <h3>Keyword Research</h3>
+                    <hr>
+                </div>
+            </div>
+            <div class="container-keyword" style="margin-top: 16px;">
+                <h5>Know detailed information about keywords relevant to your products</h5>
+                <div class=container-search>
+                    <input type="text" class="form-control" placeholder="Keyword" ng-model="keyword.q">
+                    <div class="dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" style="width:100%; background: #FFF; color: #212121; margin-left: -86px;">7
+                            Days
+                            <span class="caret"></span></button>
+                        <ul class="dropdown-menu">
+                            <li><a>7 Days</a></li>
+                            <li><a>30 Days</a></li>
+                        </ul>
+                    </div>
+
+                    <button class="badge-pill badge-primary" ng-click="keyword.search(keyword.q)">Search</button>
+                </div>
+            </div>
+
+            <div id="results" style="display:none;">
+                <div class="container-main-content container" ng-repeat="data in keyword.keyword">
+                    <div class="row">
+                        <div class="container-total-post col-md-3 form-group">
+                            <div class="content-total-post">
+                                <div class="title">
+                                    Total Post in Last 7 Day
+                                </div>
+                                <br />
+                                <div class="container-content-total-post">
+                                    <div class="content-title">
+                                        Relative Change
+                                    </div>
+                                    <div class="content-body">
+                                        <i class="fas fa-caret-up fa-3x" style="color:#66bb6a;"></i>
+                                        <div class="total-post-caption">
+                                            <div class="title">
+                                                {{data.post.relative_change_total_post * 100}}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="content-title">
+                                        Total Post
+                                    </div>
+                                    <div class="content-total">
+                                        {{data.post.total_post}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-total-engagement col-md-3 form-group">
+                            <div class="content-total-engagement">
+                                <div class="title">
+                                    Total Engagement in Last 7 Day
+                                </div>
+                                <br />
+                                <div class="container-content-total-engagement">
+                                    <div class="content-title">
+                                        Relative Change
+                                    </div>
+                                    <div class="content-body">
+                                        <i class="fas fa-caret-up fa-3x" style="color:#66bb6a;"></i>
+                                        <div class="total-engagement-caption">
+                                            <div class="title">
+                                                {{data.engagement.change_total_engagement * 100}}%
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br />
+                                    <div class="content-title">
+                                        Total Engagement
+                                    </div>
+                                    <div class="content-total">
+                                        {{data.engagement.total_engagement}}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-post-format col-md-3 form-group">
+                            <div class="content-post-format">
+                                <div class="title">
+                                    Post Format in Last 7 Day
+                                </div>
+                                <br />
+                                <div class="content-title">
+                                    Photos
+                                </div>
+                                <div class="content-body">
+                                    <div class="post-format-caption">
+                                        <div class="title">
+                                            {{data.post.type.photo}}
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="content-body-2">
+                                    <div class="item">
+                                        <div class="content-title">
+                                            Usual Post
+                                        </div>
+                                        <div class="content-total">
+                                            {{data.post.type.post}}
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="content-title">
+                                            Links
+                                        </div>
+                                        <div class="content-total">
+                                            {{data.post.type.link}}
+                                        </div>
+                                    </div>
+                                    <div class="item">
+                                        <div class="content-title">
+                                            Videos
+                                        </div>
+                                        <div class="content-total">
+                                            {{data.post.type.video}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-relevance-keyword col-md-5 form-group">
+                            <div class="content-relevance-keyword ">
+                                <div class="title">
+                                    Relevance Keyword in Last 7 Day
+                                </div>
+                                <br />
+                                <div>
+                                    <table class="table-keyword">
+                                        <thead>
+                                            <th style="width:70%">Keywords</th>
+                                            <th colspan="2">Engagement</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="key in data.relevance_keyword">
+                                                <td>{{key.keyword}}</td>
+                                                <td> <span class="engagement"> {{key.engagement.total_engagement}}</span></td>
+                                                <td>
+                                                    <div class="content-body">
+                                                        <i class="fas fa-caret-up fa-2x" style="color:#66bb6a;"></i>
+                                                        <div class="total-engagement-caption">
+                                                            <div class="title">
+                                                                &nbsp;{{key.engagement.change_total_engagement * 100}}%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-relevance-content col-md-5 form-group">
+                            <div class="content-relevance-content ">
+                                <div class="title">
+                                    Relevance Content in Last 7 Day
+                                </div>
+                                <br />
+                                <div>
+                                    <table class="table-content">
+                                        <thead>
+                                            <th style="width:70%">Contents</th>
+                                            <th colspan="2">Engagement</th>
+                                        </thead>
+                                        <tbody>
+                                            <tr ng-repeat="key in data.relevance_content">
+                                                <td>{{key.content_title}}<br /><span class="link">by
+                                                        detik.com</span></td>
+                                                <td> <span class="engagement"> {{key.engagement.total_engagement}}</span></td>
+                                                <td>
+                                                    <div class="content-body">
+                                                        <i class="fas fa-caret-up fa-2x" style="color:#66bb6a;"></i>
+                                                        <div class="total-engagement-caption">
+                                                            <div class="title">
+                                                                &nbsp;{{key.engagement.change_total_engagement * 100}}%
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    // function show() {
+    //     document.getElementById("results").style.display = "";
+    // }
+</script>

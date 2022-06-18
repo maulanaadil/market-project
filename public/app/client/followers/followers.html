@@ -1,0 +1,54 @@
+<div class="page-header-title">
+  <h3>Followers</h3>
+  <hr>
+</div>
+<div class="container" ng-if="followers.followers.length > 0">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
+      <div class="panel panel-body clearfix">
+        <div class="table-responsive">
+          <table ng-table="followers.tableFollowers" datatable="" show-filter="true" class="display table" style="width: 100%; cellspacing: 0;">
+            <tr ng-repeat="follower in $data">
+              <td class="list-follower" style="padding: 10px 0 5px !important" filter="{'userDetail.name': 'text'}" sortable="'category'">
+                {{follower.userDetail.nama}}
+                <span class="list-follower__container">
+                  <img ng-src="{{follower.userDetail.image}}"/>
+                  <span class="list-follower__name">
+                    <h1>
+                      {{follower.userDetail.name}}
+                    </h1>
+                    <h3>
+                      @{{follower.userDetail.screenName}}
+                    </h3>
+                  </span>
+
+                  <h3 class="list-follower__stats--container">
+                    <span class="list-follower__stat">
+                      <span>followers</span>
+                      {{follower.userDetail.followersCount}}
+                    </span>
+                    <span class="list-follower__stat">
+                      <span>following</span>
+                      {{follower.userDetail.friendsCount}}
+                    </span>
+                  </h3>
+
+                  <h3 class="list-follower__category">
+                    {{follower.userDetail.category}}
+                  </h3>
+                </span>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+ <!-- <div ng-if="followers.followers.length===0" class="no-data">
+  <h1>No followers found :( <a href="javascript:;" ng-click="followers.doTheJobs()">click here</a></h1>
+  <h2 class="follower-before">start get and classified your followers <a href="javascript:;" ng-click="followers.doTheJobs()">click here</a></h2>
+  <h2 class="follower-after" style="visibility: hidden">this page will refresh every 30 seconds</h2>
+ </div> -->

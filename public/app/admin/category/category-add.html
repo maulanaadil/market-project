@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-offset-2 col-sm-8">
+      <div class="panel">
+        <div class="panel-body">
+          <h1 class="text-center" style="margin-top:0">{{categoryAdd.title}} Category</h1>
+          <hr>
+          <form name="category">
+            <div class="col-sm-8 col-sm-offset-2">
+
+              <div class="form-group">
+                <input type="text" autofocus="true" required ng-model="categoryAdd.data.categoryName">
+                <label for="input" class="control-label">Category Name</label>
+                <i class="bar"></i>
+              </div>
+
+              <button ng-disabled="category.$invalid" class="btn btn-primary btn-block" ng-click="categoryAdd.save(categoryAdd.data)">
+                Save
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

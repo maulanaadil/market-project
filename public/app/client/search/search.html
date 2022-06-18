@@ -1,0 +1,82 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3">
+      <div class="panel">
+        <div class="panel-body">
+          <h1 class="text-center">
+            Search Post
+          </h1>
+          <hr>
+          <form name="searchForm">
+            <div class="input-group m-b-sm">
+              <input ng-model="search.query" required type="text" placeholder='Search for keywords ...' class="form-control col-sm-8">
+
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-primary" ng-disabled="searchForm.$invalid" ng-click="search.search(search.query)">
+                  Search!
+                </button>
+              </span>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- TWEETS -->
+  <div class="row" ng-show="search.result != 0">
+    <div class="col-sm-6"  ng-repeat="t in search.result">
+      <div class="panel" style="min-height:120px">
+        <div class="panel-body panel--body">
+          <div class="panel--profile">
+            <div class="panel--profile__left">
+              <div class="panel--img">
+                <img ng-src="{{t.user.profile_image_url_https}}" alt="">
+              </div>
+              <div class="panel--name">
+                <p>{{t.user.name}}</p>
+                 <small>@{{t.user.screen_name}}</small>
+              </div>
+            </div>
+            <div class="panel--profile__right">
+              <small>Posted at {{t.date | date : 'MMM d, y H:mm'}}</small>
+            </div>
+          </div>
+          <div class="panel--status">
+            <p>{{t.text}}</p>
+          </div>
+          <div class="panel--options">
+            <div class="btn-group m-b-sm">
+              <button href="javascript:;" class="btn btn-primary" ng-click="search.unfollowUser(t.user.id, $index)" ng-if="t.user.following === true" style="margin-right:20px"><i class="icon-user-unfollow"></i> Unfollow</button>
+
+              <button href="javascript:;" class="btn btn-primary" ng-click="search.followUser(t.user.id, $index)" ng-if="t.user.following === false" style="margin-right:20px"><i class="icon-user-follow"></i> Follow</button>
+              <button href="javascript:;" class="btn btn-primary" ng-click="search.setMention(t.user.screen_name, $index)" data-toggle="modal" data-target=".modal-{{$index}}"><i class="icon-bubbles"></i> Mention</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+       <!-- MODAL -->
+    <div class="modal fade modal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <form name="tweet">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myLargeModalLabel">Mention {{t.user.screen_name}}</h4>
+            </div>
+            <div class="modal-body">
+              <textarea id="tweet-{{$index}}" class="form-control" required placeholder="What's Happening?" ng-change="search.calLength(user.post.tweet, $index)" ng-model="user.post.tweet" style="resize:none" rows="4=6">@ {{t.user.screen_name}}</textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button ng-disabled="tweet.$invalid" id="tweet-btn{{$index}}" class="btn btn-primary pull-right btn-social" ng-click="user.tweet($index)">({{search.length}}) Tweet!</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>

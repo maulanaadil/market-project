@@ -1,0 +1,43 @@
+.blast-list {
+
+  &__title {
+    font-size: 2em;
+    text-align: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #dedede; 
+  }
+
+  &__tweet {
+    display: flex;
+    flex: 1;
+    padding: 10px 0;
+    border-bottom: 1px solid #dedede;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__tweet-img {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      border-radius: 50%;
+      border: 1px solid #aeaeae;
+      padding: 3px;
+    }
+  }
+
+  &__tweet-content {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-left: 15px;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+}

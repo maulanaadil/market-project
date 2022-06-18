@@ -1,0 +1,45 @@
+<div class="page-header-title">
+  <h3>Schedule</h3>
+  <hr>
+</div>
+<ul class="list-unstyled" ng-if="scheduled.tweets.length > 0">
+  <li class="timeline-item" ng-repeat="tweet in scheduled.tweets">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" style="margin-bottom:20px;">
+        <div class="panel panel--body">
+          <div class="panel--profile">
+            <div class="panel--profile__left">
+              <div class="panel--img">
+                <img ng-src="{{scheduled.profile.picture}}" alt="">
+              </div>
+              <div class="panel--name">
+                <p>{{scheduled.profile.name}} <small>@{{scheduled.profile.username}}</small></p>
+                <small>Publish <span class="schedule-countdown">{{tweet.countDown}}</span><span class="schedule-time">{{tweet.time | date : 'MMM d, y H:mm'}}</span></small>
+              </div>
+            </div>
+            <div class="panel--profile__right">
+              <small>created at {{tweet.createdAt | date : 'MMM d, y H:mm'}}</small>
+            </div>
+          </div>
+          <div class="panel--status">
+            <p ng-if="tweet.statusEdit === false">{{tweet.tweet}}</p>
+            <textarea class="form-control" ng-change="scheduled.calLength($index, tweet.tweet)" ng-model="tweet.tweet" ng-if="tweet.statusEdit === true" autofocus="true"></textarea>
+          </div>
+
+          <div class="panel--options" ng-if="tweet.statusEdit === false">
+            <a href="javascript:;" class="btn btn-warning" ng-click="scheduled.editScheduleTweet($index, tweet.tweet)"><i class="icon-note"></i> EDIT</a>
+            <a href="javascript:;" class="btn btn-danger" ng-click='scheduled.deleteScheduledTweet($index, tweet._id, tweet.tweet)'><i class="icon-trash"></i> DELETE</a>
+          </div>
+
+          <div class="panel--options" ng-if="tweet.statusEdit === true">
+            <a href="javascript:;" class="btn btn-primary" ng-click="scheduled.saveEditScheduleTweet(tweet.tweet, tweet._id,$index)"><i class="icon-note"></i> ({{tweet.charLength}}) SAVE</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<div ng-if="scheduled.tweets.length===0" class="no-data">
+  <h1>No tweet found :(</h1>
+</div>

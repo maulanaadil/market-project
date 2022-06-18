@@ -1,0 +1,25 @@
+.login-container
+  .login-container--left
+    
+    .jargon
+    p &nbsp;
+  .login-container--right
+      p built with &nbsp;
+        i.fa.fa-heart(style="color:#e2264d")
+        | &nbsp; by Mikqi for 
+        em SKRIPSI
+  .login-container-form
+    .login-form 
+      h1.logo Twikipedia
+        small admin
+      form(method='POST')
+        .form-group(style="width:250px")
+          input(type='email', name='email', id='email', autofocus=true, required)
+          label.control-label(for="input") Email
+          i.bar
+        .form-group(style="width:250px")
+          input(type='password', name='password', id='password', required)
+          label.control-label(for="input") Password
+          i.bar
+        button.btn.btn-primary.btn-block(type='submit') Log in
+      

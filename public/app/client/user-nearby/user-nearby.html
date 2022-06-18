@@ -1,0 +1,337 @@
+<style type="text/css">
+
+  .user-nearby-content{
+      height: 600px;
+      max-height: 600px;
+      display: flex;
+      flex-direction: column;
+  }
+
+  .user-nearby-content .title{
+    border-bottom: 2px solid #eee;
+  }
+
+  .user-list-container{
+    display: flex;
+    flex-direction: column;
+  }
+  #location {
+    margin-top: 20px;
+    padding: 10px;
+    font-style: bold;
+    color: #5ea9dd;
+  }
+
+  #map {
+    height: 100%;
+  }
+
+  button {
+    border-radius: 5px;
+    background: #2d92ff;
+    color: #fff;
+    font-weight: bolder;
+    border: none;
+    padding: 5px 10px;
+    /*margin-top: -10px;*/
+    transition: all ease 0.3s;
+  }
+
+  textarea {
+    resize: none;
+  }
+
+  div[data="post-data"].form-group textarea {
+    border: none;
+    min-height: 100px;
+  }
+
+  div[data="post-data"].form-group textarea+#word-limit {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin-bottom: 5px;
+  }
+
+  .post-img {
+    display: flex;
+    height: 100%;
+  }
+
+  .post-img img {
+    height: 100%;
+    margin: 0px auto;
+  }
+
+  /* User List Style */
+  .user-list{
+    height: 100%;
+    /*display: flex;
+    flex-direction: column;*/
+    overflow-y: auto;
+  }
+
+  .user-list .user-item{
+    padding:5px;
+    display: flex;
+    flex-direction: row;
+  }
+
+  .user-list .user-item .user-photo{
+    width: 80px;
+    margin-right: 10px;
+  }
+
+  .user-list .user-item .user-photo img{
+    width: 100%;
+  }
+
+  .user-list .user-item .user-detail{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .user-list .user-item .user-detail .user-desc{
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+
+  .user-list .user-item .user-detail .user-desc .user-name{
+    font-size: 1.25em;
+    font-weight: bold;
+  }
+
+  .user-list .user-item .user-detail .user-desc .user-id{
+    font-size: 0.9em;
+    font-weight: lighter;
+  }
+  .user-list .user-item .user-detail .user-desc .user-class{
+    font-size: 1em;
+  }
+  .user-list .user-item .user-detail .user-desc span:nth-child(4){
+    font-size: 0.9em;
+  }
+
+  .user-list .user-item .user-detail .user-option{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+</style>
+
+<div class="col-lg-6 col-md-5">
+  <div class="panel info-box panel-white user-nearby-content">
+    <div id="map">
+    </div>
+  </div>
+</div>
+<div class="col-lg-6 col-md-5">
+  <div class="panel info-box panel-white user-nearby-content">
+    <div class="title">
+      <h3><b>Close Categorized Target </b></h3>
+      <span style="line-height:30px">{{userNearby.lokasiMe}}</span>
+    </div>
+    <div class="user-list-container">
+      <div class="user-list">
+        <div class="user-item" ng-repeat="(i,postData) in userNearby.users">
+          <div class="user-photo">
+            <img src="{{postData.user.profile_image_url}}" alt="">
+          </div>
+          <div class="user-detail">
+              <div class="user-desc">
+                <span class="user-name">{{postData.user.name}}</span>
+                <span class="user-id">@{{postData.user.screen_name}}</span>
+                <span class="user-class">Classified as {{postData.classifyText}} Category</span>
+                <span><a style="color:#2d92ff">Distance</a> {{userNearby.jarak[i].jarak}} Km</span>
+              </div>
+              <div class="user-option">
+                <!-- <span><img src="/images/nearby/ic-twitter.png" alt=""></span><p> -->
+                <span><button ng-model="btnSetMention" ng-click="userNearby.setMention(postData.user.screen_name, $index)" data-toggle="modal" data-target=".modal-{{$index}}"><strong>Mention</strong></button></span>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+
+<div class="modal fade modal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" ng-repeat="(i,postData) in userNearby.users" id="modalUserNearby-{{$index}}">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <form name="tweet">
+        <div class="modal-header" style="height:75px">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h5 class="modal-title" id="myLargeModalLabel"><img src="/images/nearby/ic-twitter.png" style="width:20px"> <img src="{{userNearby.ava}}" style="width:20px"> @{{userNearby.username}}</h5>
+          <h5 class="modal-title" id="myLargeModalLabel" style="margin-top:10px;">Message Sent as Mention to {{postData.user.screen_name}}</h5>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="index" value="{{$index}}">
+          <form>
+            <div data="post-data" class="form-group">
+              <textarea type="text" id="tweet-{{$index}}" ids="{{$index}}" class="form-control text" required placeholder="What's Happening?" ng-model="userNearby.post.tweet" onchange="text(this,this.value)" ng-change="userNearby.calLength(userNearby.post.tweet, $index)"
+                rows="4=6" value="@{{users.screen_name}}"></textarea>
+              <span id="word-limit">{{userNearby.length}}</span>
+            </div>
+
+          </form>
+          <div class="post-picture-list-{{$index}}" style="background:#ddd;text-align:center;height:90px;display:none">
+            <div class="post-img">
+              <img id="img-upl-{{$index}}" style="height: 100%">
+            </div>
+          </div>
+          <div id="post-info">
+            <span id="post-tools">
+              <label class="btn btn-primary btn-transparent">
+                <img src="../images/dashboard/ic-add-image.png" alt="add picture">
+                <!-- <input type="text" ids="ids" value="{{$index}}"> -->
+                <input id="uploadImage" ids="{{$index}}" type="file" file-model="userNearby.post.image" onchange="test(this)">
+              </label>
+              <!-- <label class="btn btn-primary btn-transparent" data-toggle="tooltip" title="Preview<br/>Post">
+                <img src="../images/dashboard/ic-preview-post.png" alt="preview post">
+              </label> -->
+            </span>
+
+
+          </div>
+        </div>
+
+        <div class="modal-footer flex-container-column">
+          <div id="option">
+            <div id="post-score">
+              <span id="text-score-{{$index}}" style="display:none">
+                  <label for="">Text Score :</label> <span class="text-score" id="q-text-{{$index}}"></span>
+              </span>
+              <span id="photo-score-{{$index}}" style="display:none">
+                  <label for="">Image Quality :</label> <span class="text-score" id="q-pic-{{$index}}"></span>
+              </span>
+            </div>
+          </div>
+          <button ng-disabled="tweet.$invalid" id="tweet-btn{{$index}}" class="btn btn-primary pull-right btn-primary-custom" ng-click="userNearby.tweet($index,userNearby.post)">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript" src="/js/usernearby.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyxvYX6-S92B9CVFFIBsPJaOmDky8tXvM&callback=initMap" async defer></script>
+<script>
+  function readURL(input, index) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      $(".post-picture-list-" + index).css({
+        'display': ''
+      });
+      reader.onload = function(e) {
+        $('#img-upl-' + index).attr('src', e.target.result);
+        $("#img-upl-" + index).css({
+          'display': ''
+        });
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function test(data) {
+    // console.log('asdasdasdasd');
+    var index = $(data).attr('ids');
+    readURL(data, index);
+    var fd = new FormData();
+    fd.append("image", data.files[0]);
+    // console.log(fd);
+    $.ajax({
+      url: "/api/v1/photo",
+      type: "POST",
+      processData: false,
+      contentType: false,
+      data: fd,
+      success: function(data, status) {
+        var datas = data.body;
+        // console.log(datas);
+        var score = 0;
+        var i = 0;
+        if (datas.length > 0) {
+          data.forEach(function(pics) {
+            score = score + datas.categories[0].score;
+            i++;
+          });
+
+        } else {
+          score = datas.categories[0].score;
+          i++;
+        }
+        var final = score / i;
+        var count = (final * 100).toFixed(1);
+        document.getElementById('photo-score-' + index).style.display = "";
+        if (count >= 80) {
+          document.getElementById('q-pic-' + index).innerHTML = 'Score ' + count + '/100 ' + '(Very Good Image)';
+        } else if ((count < 80) && (count >= 60)) {
+          document.getElementById('q-pic-' + index).innerHTML = 'Score ' + count + '/100 ' + '(Good Image)';
+        } else if ((count < 60) && (count >= 40)) {
+          document.getElementById('q-pic-' + index).innerHTML = 'Score ' + count + '/100 ' + '(Fair Image)';
+        } else {
+          document.getElementById('q-pic-' + index).innerHTML = 'Score ' + count + '/100 ' + '(Poor Image)';
+        }
+        // console.log(count);
+
+      },
+      error: function(data, error) {
+        //document.getElementById('pics').innerHTML = data.categories[0]
+        console.log(data);
+      }
+
+
+    });
+  }
+  // });
+
+  function text(data, d) {
+
+    // console.log(data);
+    var index = $(data).attr('ids');
+    var params = {
+      // Request parameters
+    };
+    // console.log(d);
+    var text = d;
+    var documents = [{
+      "language": "en",
+      "id": "1",
+      "text": text
+    }];
+    $.ajax({
+      url: "https://southeastasia.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" + $.param(params),
+      beforeSend: function(xhrObj) {
+        // Request headers
+        xhrObj.setRequestHeader("Content-Type", "application/json");
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "971894d1784f435ebf24a11004f9483c");
+      },
+      type: "POST",
+      // Request body
+      data: JSON.stringify({
+        documents: documents
+      }),
+      success: function(data, status) {
+        var count = (data.documents[0].score * 100).toFixed(1);
+        $('#text-score-' + index).css("display", "flex");
+        if (count >= 80) {
+          document.getElementById('q-text-' + index).innerHTML = 'Score ' + count + '/100 ' + '(Very Good Post)';
+        } else if ((count < 80) && (count >= 60)) {
+          document.getElementById('q-text-' + index).innerHTML = 'Score ' + count + '/100 ' + '(Good Post)';
+        } else if ((count < 60) && (count >= 40)) {
+          document.getElementById('q-text-' + index).innerHTML = 'Score ' + count + '/100 ' + '(Fair Post)';
+        } else {
+          document.getElementById('q-text-' + index).innerHTML = 'Score ' + count + '/100 ' + '(Poor Post)';
+        }
+      },
+      error: function(data, error) {
+        document.getElementById('twit').innerHTML = data.message;
+      }
+    });
+  }
+</script>

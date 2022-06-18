@@ -1,0 +1,50 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2">
+      <div class="panel" style="margin: 0">
+        <div class="panel-body">
+          <h1 class="text-center"  ng-if="crawlAdd.statusSearch === false">Search for an Article</h1>
+          <h1 class="text-center"  ng-if="crawlAdd.statusSearch === true">Select Category for Article</h1>
+
+          <hr>
+          <form name="crawlSearch">
+            <div class="input-group m-b-sm" ng-if="crawlAdd.statusSearch === false">
+              <input ng-model="crawlAdd.query" required type="text" placeholder="Search for keywords ..." class="form-control col-sm-8">
+
+              <span class="input-group-btn">
+                <button ng-disabled="crawlSearch.$invalid" class="btn btn-primary" ng-click="crawlAdd.search(crawlAdd.query)">
+                  Search!
+                </button>
+              </span>
+            </div>
+          </form>
+
+          <form name="crawlCategory">
+            <div class="m-b-sm" ng-if="crawlAdd.statusSearch === true">
+              <select class="form-control" ng-model="crawlAdd.data.categoryName" style="width:100%">
+                <option value=""> Selecet Category</option>
+                <option ng-repeat="category in crawlAdd.categories" value="{{category.categoryName}}">
+                  {{category.categoryName}}</option>
+                </select>
+              </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-8 col-md-6 col-md-offset-3 col-sm-offset-2" ng-if="crawlAdd.statusSearch===true">
+      <div class="panel panel-body" style="padding:0">
+
+        <div class="crawl-btn">
+          <button class="btn btn-block crawl-btn-danger" ng-click="crawlAdd.reset()">Delete</button>
+          <button ng-disabled="crawlCategory.$invalid" class="btn btn-block crawl-btn-primary" ng-click="crawlAdd.saveArticle(crawlAdd.data.categoryName)">Save</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-sm-12" style="margin-top: 10px" id="article">
+
+    </div>
+  </div>
+</div>

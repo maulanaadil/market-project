@@ -1,0 +1,289 @@
+<style>
+  textarea#tweet-text {
+    min-height: 100px;
+  }
+
+  textarea#tweet-text+#word-limit {
+    position: absolute;
+    bottom: 0px;
+    right: 0px;
+    margin-bottom: 5px;
+  }
+
+  .post-img {
+    display: flex;
+    height: 100%;
+  }
+
+  .post-img img {
+    height: 100%;
+    margin: 0px auto;
+  }
+
+  .info-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0px 10px;
+  }
+</style>
+
+<div class="page-header-title">
+  <h3>Buzzer Finder</h3>
+  <hr>
+  <div class="filter">
+    <span>Filter based on category</span>
+    <select name="filter" ng-model="search.category" class="form-control">
+      <option value="">All Category</option>
+      <option value="Food">Food</option>
+      <option value="Fashion">Fashion</option>
+      <option value="Travel">Travel</option>
+      <option value="Sport">Sport</option>
+    </select>
+  </div>
+</div>
+<!-- <div class="container" ng-if="buzzer.followers.length > 0"> -->
+<div class="buzzer-card-container">
+  <div class="buzzer-card" ng-repeat="data in buzzer.followers | orderBy:'-followers_count' | filter:search ">
+    <img ng-src="{{data.profile_image_url_https}}" class="buzzer-card__img-profile">
+    <div class="content">
+      <!-- <span class="displayName">@{{data.users.name}}</span> -->
+      <p class="username">@{{data.screen_name}}</p>
+    </div>
+    <div class="info-content">
+      <div >
+        <h2>Followers</h2>
+        <p>{{data.followers_count}}</p>
+      </div>
+      <div class="line"></div>
+      <div>
+        <h2>Interest</h2>
+        <p>{{data.category}}</p>
+      </div>
+    </div>
+    <button class="btn btn-primary btn-buzzer" data-toggle="modal" onCLick="openModal()" ng-click="buzzer.setMention(data.screen_name)">Message</button>
+  </div>
+  <!-- Modal -->
+</div>
+
+<div ng-if="followers.length===0" class="no-data">
+  <h1>No followers found :( <a href="javascript:;" ng-click="followers.doTheJobs()">click here</a></h1>
+  <h2 class="follower-before">start get and classified your followers <a href="javascript:;" ng-click="followers.doTheJobs()">click here</a></h2>
+  <h2 class="follower-after" style="visibility: hidden">this page will refresh every 30 seconds</h2>
+</div>
+
+
+<!-- MODAL -->
+<div class="modal fade modal-buzzer" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <form name="tweet" enctype="multipart/form-data" id="form-tweet">
+        <div class="modal-header" style="height: 75px">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h5 class="modal-title" id="myLargeModalLabel"><img src="/images/nearby/ic-twitter.png" style="width:20px"> <img src="{{buzzer.ava}}" style="width:20px"> @{{buzzer.username}}</h5>
+          <h5 class="modal-title" id="myLargeModalLabel" style="margin-top:10px;">Message Sent as Mention to </h5>
+        </div>
+        <div class="modal-body">
+          <input type="hidden" id="index" value="">
+          <div data="post-data" class="form-group">
+            <textarea id="tweet-text" class="form-control" required placeholder="What's Happening?" ng-model="buzzer.post.tweet" ng-change="buzzer.calLength(buzzer.post.tweet)" style="resize:none" rows="4=6" onchange="textscore(this.value)"></textarea>
+            <span id="word-limit">140</span>
+          </div>
+          <div class="post-picture-list" style="background:#ddd;text-align:center;height:90px;">
+            <div class="post-img">
+              <img id="img-upl" style="height: 100%">
+            </div>
+          </div>
+          <div id="post-info">
+            <span id="post-tools">
+                  <label class="btn btn-primary btn-transparent" data-toggle="tooltip" title="Attach Picture<br/>From Library">
+                  <img src="../images/dashboard/ic-add-image.png" alt="add picture">
+                  <input id="uploadImage" type="file" file-model="buzzer.post.image" onchange="addImage(this)">
+                </label>
+              </span>
+
+            <!-- <div id="post-score" style="margin-top: 10px;">
+                <span id="text-score">
+                  <label for="">Text Score :</label> <span class="post-score" id="q-text"></span>
+                </span> <br>
+                <span id="photo-score">
+                  <label for="">Image Quality :</label> <span class="post-score" id="q-pic"></span>
+                </span>
+              </div> -->
+          </div>
+        </div>
+        <!-- end of modal-body -->
+
+        <div class="modal-footer flex-container-column">
+          <div id="option">
+            <div id="post-score" style="padding-bottom: 20px;">
+              <span id="text-score">
+                    <label for="">Text Score :</label>
+                    <span class="post-score text-score" id="q-text">Score 26.6/100 (Poor Post)</span>
+              </span>
+              <span id="photo-score">
+                    <label for="">Image Quality :</label>
+                    <span class="post-score text-score" id="q-pic">Score 90.2/100 (Very Good Image)</span>
+              </span>
+            </div>
+          </div>
+          <button ng-disabled="tweet.$invalid" id="tweet-btn" class="btn btn-primary btn-primary-custom pull-right ng-binding" ng-click="buzzer.postTweet(buzzer.post)">Post</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!-- END OF MODAL -->
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $(".post-picture-list").hide();
+    $("#text-score").hide();
+    $("#photo-score").hide();
+  });
+</script>
+<script type="text/javascript">
+  maxChar = 140;
+
+  function openModal() {
+    document.getElementById("form-tweet").reset();
+    $(".post-picture-list").hide();
+    $("#text-score").hide();
+    $("#photo-score").hide();
+    $(".modal-buzzer").modal('show');
+
+    $('#word-limit').html(maxChar)
+  }
+
+  $('textarea#tweet-text').on("input", function() {
+    text = $(this).val()
+    if (text.length <= 140) {
+      storeText = text
+      $('div[data="post-data"]').css({
+        'border': '1px solid #bdc5c9'
+      })
+      $('#word-limit')
+    } else {
+      $(this).val(storeText)
+      $('div[data="post-data"]').css({
+        'border': '1px solid #ff7272'
+      })
+    }
+
+    $('#word-limit').html(maxChar - storeText.length)
+    console.log($('#word-limit').html());
+  });
+
+  function readURL(input) {
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+      $(".post-picture-list").show();
+      reader.onload = function(e) {
+        $('#img-upl').attr('src', e.target.result);
+        $("#img-upl").css({
+          'display': ''
+        });
+      }
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+
+  function addImage(data) {
+    readURL(data);
+    var fd = new FormData();
+    fd.append("image", data.files[0]);
+    // console.log(fd);
+    $.ajax({
+      url: "/api/v1/photo",
+      type: "POST",
+      processData: false,
+      contentType: false,
+      data: fd,
+      success: function(data, status) {
+        var datas = data.body;
+        console.log(datas);
+        var score = 0;
+        var i = 0;
+        if (datas.length > 0) {
+          data.forEach(function(pics) {
+            score = score + datas.categories[0].score;
+            i++;
+          });
+
+        } else {
+          score = datas.categories[0].score;
+          i++;
+        }
+        var final = score / i;
+        var count = (final * 100).toFixed(1);
+        // document.getElementById('photo-score').style.display = "";
+        $("#photo-score").show();
+        if (count >= 80) {
+          document.getElementById('q-pic').innerHTML = 'Score ' + count + '/100 ' + '(Very Good Image)';
+        } else if ((count < 80) && (count >= 60)) {
+          document.getElementById('q-pic').innerHTML = 'Score ' + count + '/100 ' + '(Good Image)';
+        } else if ((count < 60) && (count >= 40)) {
+          document.getElementById('q-pic').innerHTML = 'Score ' + count + '/100 ' + '(Fair Image)';
+        } else {
+          document.getElementById('q-pic').innerHTML = 'Score ' + count + '/100 ' + '(Poor Image)';
+        }
+        console.log(count);
+
+      },
+      error: function(data, error) {
+        //document.getElementById('pics').innerHTML = data.categories[0]
+        console.log(data);
+      }
+    });
+  }
+
+  function textscore(d) {
+    var params = {
+      // Request parameters
+    };
+    console.log(d);
+    var text = d;
+    var documents = [{
+      "language": "en",
+      "id": "1",
+      "text": text
+    }];
+    $.ajax({
+      url: "https://southeastasia.api.cognitive.microsoft.com/text/analytics/v2.0/sentiment?" + $.param(params),
+      beforeSend: function(xhrObj) {
+        // Request headers
+        xhrObj.setRequestHeader("Content-Type", "application/json");
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", "971894d1784f435ebf24a11004f9483c");
+      },
+      type: "POST",
+      // Request body
+      data: JSON.stringify({
+        documents: documents
+      }),
+      success: function(data, status) {
+        // document.getElementById('twit').innerHTML = 'Tweet Score '+ (data.documents[0].score * 100).toFixed(1) +'/100';
+        document.getElementById('q-text').innerHTML = "";
+        var count = (data.documents[0].score * 100).toFixed(1);
+        // document.getElementById('text-score').style.display = "";
+        $("#text-score").show();
+        if (count >= 80) {
+          document.getElementById('q-text').innerHTML = 'Score ' + count + '/100 ' + '(Very Good Post)';
+        } else if ((count < 80) && (count >= 60)) {
+          document.getElementById('q-text').innerHTML = 'Score ' + count + '/100 ' + '(Good Post)';
+        } else if ((count < 60) && (count >= 40)) {
+          document.getElementById('q-text').innerHTML = 'Score ' + count + '/100 ' + '(Fair Post)';
+        } else {
+          document.getElementById('q-text').innerHTML = 'Score ' + count + '/100 ' + '(Poor Post)';
+        }
+        console.log('Score Text : ' + data.documents[0].score);
+        //  document.getElementById('twit').style.display = '';
+
+      },
+      error: function(data, error) {
+        document.getElementById('twit').innerHTML = data.message;
+      }
+    });
+  }
+</script>

@@ -1,0 +1,209 @@
+//- .overlay
+form.search-form(action='#', method='GET')
+  .input-group
+    input.form-control.search-input(type='text', name='search', placeholder='Search...')
+    span.input-group-btn
+      button.btn.btn-default.close-search.waves-effect.waves-button.waves-classic(type='button')
+        i.fa.fa-times
+  // Input Group
+// Search Form
+main.page-content.content-wrap
+  .navbar
+    .navbar-inner
+      .sidebar-pusher
+        a.waves-effect.waves-button.waves-classic.push-sidebar(href='javascript:void(0);')
+          i.fa.fa-bars
+      .topmenu-outer
+        .top-menu
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              a.dropdown-toggle.waves-effect.waves-button.waves-classic(href='javascript:;', data-toggle='dropdown',aria-expanded='true')
+                .avatar
+                  img(src="../images/dashboard/ic-notification.png")
+                  span.img-circle.notif-count 1
+              ul.dropdown-menu.dropdown-list(role="menu")
+                li(role='presentation')
+                  a(href="#") Notification
+            li.dropdown
+              a(style="")
+                button(ng-controller="CreateDialogCtrl as $dialogCtrl" ng-click="$dialogCtrl.open()")
+                  | Create Post
+            li.dropdown
+              a.dropdown-toggle.waves-effect.waves-button.waves-classic(href='javascript:;', data-toggle='dropdown', aria-expanded='true')
+                img.img-circle.avatar(src='#{user.picture}', width='40', height='40', alt='')
+                i.fa.fa-caret-down(style="margin-left:15px")
+              ul.dropdown-menu.dropdown-list(role='menu')
+                li(role='presentation')
+                  a(href='/setting')
+                    i.icon-settings.m-r-xs
+                    | Settings
+                li(role='presentation')
+                  a(href='/logout')
+                    i.icon-logout.m-r-xs
+                    | Log out
+            //- li
+              //- a.waves-effect.waves-button.waves-classic.show-search(href='javascript:void(0);')
+  div(id="modal-area")
+
+  // Navbar
+  .page-sidebar.sidebar
+    .page-sidebar-inner.slimscroll
+      .sidebar-header
+       .logo-box
+         a.logo-text(href='/')
+           img(src="../images/dashboard/app-logo.png")
+       a.waves-effect.waves-button(ui-sref='profile')
+        .sidebar-profile
+          .sidebar-profile-image
+            img.img-circle.img-responsive(src='#{user.picture}', alt='')
+          .sidebar-profile-details
+            span.id_name
+              | #{user.name || user.email || user.id}
+            span.id_profile @#{user.username || user.role}
+      ul.menu.accordion-menu
+        li(ui-sref-active="active")
+          a.waves-effect.waves-button(ui-sref='dashboard')
+            div
+              img(src='../images/dashboard/ic-dashboard.png')
+            div
+              span Dashboard
+        li.droplink(ui-sref-active='active')
+          a.waves-effect.waves-button(href='#')
+            span.menu-icon.icon-users
+            p &nbsp;&nbsp;&nbsp;&nbsp;Audience
+            span.arrow
+          ul.sub-menu
+            li.no-border
+              a(ui-sref='persona') Audience Persona
+            li.no-border
+              a(ui-sref='user-nearby') Nearby Audience
+            li.no-border
+              a(ui-sref='buzzer') Buzzer Finder
+        li(ui-sref-active="active")
+          a.waves-effect.waves-button(ui-sref='keyword')
+            div
+              img(src='../images/dashboard/ic-buzzer-finder.png')
+            div
+              span Keyword
+        li(ui-sref-active="active")
+          a.waves-effect.waves-button(ui-sref='content-performance')
+            div
+              img(src='../images/dashboard/ic-feedback.png')
+            div
+              span Performance
+        li(ui-sref-active="active")
+          a.waves-effect.waves-button(ui-sref='scheduled')
+            div
+              img(src='../images/dashboard/ic-schedule.png')
+            div
+              span Schedule
+        li(ui-sref-active="active")
+          a.waves-effect.waves-button(ui-sref='follower-lists')
+            div
+              img(src='../images/dashboard/ic-followers.png')
+            div
+              span Followers
+        //- li(ui-sref-active="active")
+        //-   a.waves-effect.waves-button(ui-sref='persona')
+        //-     div
+        //-       img(src='../images/dashboard/ic-followers.png')
+        //-     div
+        //-       span Persona
+        li(ui-sref-active="active")
+          a.waves-effect.waves-button(ui-sref='mentions')
+            div
+              img(src='../images/dashboard/ic-feedback.png')
+            div
+              span Feedback
+        //- li(ui-sref-active="active")
+        //-   a.waves-effect.waves-button(ui-sref='user-nearby')
+        //-     div
+        //-       img(src='../images/dashboard/ic-nearby-user.png')
+        //-     div
+        //-       span Nearby Target Audience
+        //- li(ui-sref-active="active")
+        //-   a.waves-effect.waves-button(ui-sref='buzzer')
+        //-     div
+        //-       img(src='../images/dashboard/ic-buzzer-finder.png')
+        //-     div
+        //-       span Buzzer Finder
+        li(ui-sref-active="active")
+          a.waves-effect.waves-button(ui-sref='profile')
+            div
+              img(src='../images/dashboard/ic-feeds.png')
+            div
+            span Feeds
+            //-
+        //- li(ui-sref-active='active')
+        //-   a.waves-effect.waves-button(ui-sref='dashboard')
+        //-     span.menu-icon.icon-home
+        //-     p Dashboard
+        //- li(ui-sref-active='active')
+        //-   a.waves-effect.waves-button(ui-sref='profile')
+        //-     span.menu-icon.icon-user
+        //-     p Profile
+        //- li.droplink(ui-sref-active='active')
+        //-   a.waves-effect.waves-button(href='#')
+        //-     span.menu-icon.icon-social-twitter
+        //-     p Twitter
+        //-     span.arrow
+        //-   ul.sub-menu
+        //-     li.no-border
+        //-       a(ui-sref='scheduled') Scheduled
+        //-     li.no-border
+        //-       a(ui-sref='follower-lists') Followers
+        //-     li.no-border
+        //-       a(ui-sref='mentions') Mentions
+        //-     li.no-border
+        //-       a(ui-sref='direct-messages') Direct Message
+        //-     li.no-border
+        //-       a(ui-sref='post-blast') Blast Post
+        //-     li.no-border
+        //-       a(ui-sref='user-nearby') User Nearby
+        //-     li.no-border
+        //-       a(ui-sref='buzzer') Buzzer Finder
+        //- li.droplink(ui-sref-active='active')
+        //-   a.waves-effect.waves-button(href='#')
+        //-     span.menu-icon.icon-magnifier
+        //-     p Search
+        //-     span.arrow
+        //-   ul.sub-menu
+        //-     li.no-border
+        //-       a(ui-sref='search') Search Post
+        //-     li.no-border
+        //-       a(ui-sref='search-user') Search User
+        //- li
+        //-   a.waves-effect.waves-button#logout(href='/logout')
+        //-     span.menu-icon.icon-logout
+        //-     p Log Out
+        //- li
+        //-   a.waves-effect.waves-button#logout(href='/auth/facebook')
+        //-     span.menu-icon.icon-logout
+        //-     p Connect FB
+        li(style="height: 100px")
+    // Page Sidebar Inner
+  // Page Sidebar
+  .page-inner
+    #main-wrapper
+      ui-view
+      // Row
+    // Main Wrapper
+   // .page-footer
+     // p.no-s 2022 © Market Project by CodeLabs.
+  // Page Inner
+.cd-overlay
+
+script.
+  if(localStorage.getItem('name') !== '#{user.name}' && localStorage.getItem('username') !== '#{user.username}' && localStorage.getItem('picture') !== '#{user.picture}') {
+    localStorage.setItem('name', '#{user.name}');
+    localStorage.setItem('username', '#{user.username}');
+    localStorage.setItem('picture', '#{user.picture}');
+  } else if (localStorage.getItem('name') == null && localStorage.getItem('username') == null && localStorage.getItem('picture') == null) {
+    localStorage.setItem('name', '#{user.name}');
+    localStorage.setItem('username', '#{user.username}');
+    localStorage.setItem('picture', '#{user.picture}');
+  }
+  document.querySelector('#logout').addEventListener('click', function() {
+    localStorage.removeItem('profile');
+  })
+  

@@ -1,0 +1,446 @@
+<style lang="css" scoped>
+    .container {
+        margin-left: 0%;
+    }
+
+    .content {
+        min-height: 100vh;
+        padding-bottom: 16px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .content #back-button {
+        width: 83px;
+        height: 34px;
+        background-color: white;
+        border: none;
+        box-shadow: none;
+        border-radius: 17px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .content>.title>.inline {
+        display: flex;
+        flex-direction: row;
+        margin-top: 20px;
+        font-size: 16px;
+        font-weight: 800;
+    }
+
+    .content {
+        margin-top: 16px;
+    }
+
+    .content-title {
+        font-size: 12px;
+    }
+
+    .content-total {
+        font-weight: 800;
+        font-size: 14px;
+    }
+
+    .content .container-main-content {
+        margin-top: -28px;
+    }
+
+    .content .container-main-content>.container-total-engagement {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-total-engagement.col-md-3.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+    }
+
+    .content .container-main-content.container>.row .container-total-engagement.col-md-3.form-group>.content-total-engagement>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container>.row .container-total-engagement.col-md-3.form-group .content-total-engagement .container-content-total-engagement .content-body {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .content .container-main-content.container>.row .container-total-engagement.col-md-3.form-group .content-total-engagement .container-content-total-engagement .content-body .total-engagement-caption .title {
+        font-weight: 800;
+        color: #66bb6a;
+        margin-left: 16px;
+        font-size: 36px;
+    }
+
+    .content .container-main-content>.container-sentiment {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-sentiment.col-md-3.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-left: 16px;
+    }
+
+    .content .container-main-content.container>.row .container-sentiment.col-md-3.form-group>.content-sentiment>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container>.row .container-sentiment.col-md-3.form-group .content-sentiment .container-content-sentiment {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        padding-bottom: 42px;
+    }
+
+    .content .container-main-content.container>.row .container-sentiment.col-md-3.form-group .content-sentiment .container-content-sentiment .sentiment-caption .title {
+        font-weight: 800;
+        color: #66bb6a;
+        margin-left: 16px;
+        font-size: 36px;
+    }
+
+    .container>.content-area {
+        margin-top: 42px;
+        width: 100%;
+        padding: 24px;
+        padding-top: 28px;
+        padding-bottom: 12px;
+        border-radius: 5px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+    .container>.content-area .header {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container>.content-area .header .performance {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    .container>.content-area .header .performance h5 {
+        font-weight: 900;
+        margin-left: 9px;
+        font-size: 24px;
+        color: #66bb6a;
+    }
+
+    .container>.content-area .header>.performance img {
+        height: 10%;
+        width: 10%;
+    }
+
+    .container>.content-area .header .author {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 25px;
+        align-items: center;
+
+    }
+
+    .container>.content-area .header .author img {
+        width: 30px;
+        height: 30px;
+
+    }
+
+    .container>.content-area .header .author .avatar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .container>.content-area .header .author .avatar .author-name {
+        margin-left: 10px;
+        font-size: 12px;
+        color: #757575;
+    }
+
+    .container>.content-area .author .publish-date {
+        font-size: 12px;
+        color: #757575;
+    }
+
+    .container .text {
+        margin-top: 10px;
+    }
+
+    .container .text h5 {
+        font-weight: bold;
+    }
+
+    .container .text p {
+        /* width: 324px; */
+        /* height: 76px; */
+        padding-top: 16px;
+        font-family: Lato;
+        font-size: 14px;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+    .container #footer {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .container #footer .total-sentiment {
+        margin-right: 30px;
+    }
+
+    .container #footer .title {
+        font-size: 14px;
+        opacity: 0.4;
+    }
+
+    .super-rare-button {
+        width: 100%;
+        /* height: 37px; */
+        /* background: #3883e2; */
+        box-shadow: none;
+        color: #3883e2;
+        border: 1px solid #3883e2;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .content .container-main-content>.container-engagement {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-engagement.col-md-6.form-group {
+        margin-top: 0px;
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+    }
+
+    .content .container-main-content>.row .container-engagement.col-md-6.form-group>.content-engagement>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="content">
+            <div class="container-header">
+                <button id="back-button" ui-sref="content-performance"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp;
+                    Back</button>
+            </div>
+            <div class="title">
+                <div class="inline">
+                    Content Perfomance &nbsp;
+                    <select style="width: 123px;height: 25px;font-size:12px">
+                        <option>7 Days</option>
+                        <option>30 Days</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="container-main-content container" ng-repeat="data in contentperformancedetail.content">
+                <div class="row">
+                    <div class="container-total-engagement col-md-3 form-group">
+                        <div class="content-total-engagement">
+                            <div class="title">
+                                Total Engagement in Last 7 Day
+                            </div>
+                            <br />
+                            <div class="container-content-total-engagement">
+                                <div class="content-title">
+                                    Relative Change
+                                </div>
+                                <div class="content-body">
+                                    <i class="fas fa-caret-up fa-3x" style="color:#66bb6a;"></i>
+                                    <div class="total-engagement-caption">
+                                        <div class="title">
+                                            {{data.engagement.change_total_engagement * 100}}%
+                                        </div>
+                                    </div>
+                                </div>
+                                <br />
+                                <div class="content-title">
+                                    Total Engagement
+                                </div>
+                                <div class="content-total">
+                                    {{data.engagement.total_engagement}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="container-sentiment col-md-3 form-group">
+                        <div class="content-sentiment">
+                            <div class="title">
+                                Sentiment Score in Last 7 Days
+                            </div>
+                            <br />
+                            <div class="container-content-sentiment">
+                                <i class="far fa-smile fa-6x" style="color:#66bb6a;"></i>
+                                <div class="sentiment-caption">
+                                    <div class="title" ng-if="data.sentiment_score.good > data.sentiment_score.bad">
+                                        {{data.sentiment_score.good * 100}}%
+                                    </div>
+                                    <div class="title" ng-if="data.sentiment_score.bad > data.sentiment_score.good">
+                                        {{data.sentiment_score.bad * 100}}%
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4 container" style="margin:0;">
+                        <section class="content-area">
+                            <section class="header">
+                                <div class="performance">
+                                    <img src="../../images/thumb-up.svg" alt="">
+                                    <h5>{{data.performance}}</h5>
+                                </div>
+                                <div class="author">
+                                    <div class="avatar">
+                                        <img width="10%" ng-src="{{contentperformancedetail.profile.img_image_url}}" />
+                                        <div class="author-name">
+                                            {{contentperformancedetail.profile.name}}
+                                        </div>
+                                    </div>
+                                    <div class="publish-date" ng-bind="data.time | date:'MM/dd/yyyy'">
+                                        
+                                    </div>
+                                </div>
+                            </section>
+                            <section class="text">
+                                <p>
+                                    {{data.text}}
+                                </p>
+                            </section>
+                            <img width="40px" height="40px" ng-src="{{data.media_url}}" ng-if="data.media_url !== undefined" />
+                            <section id="footer" style="margin-bottom:10px">
+                                <div class="total-sentiment">
+                                    <div class="content-title">
+                                        Total Sentiment
+                                    </div>
+                                    <div class="content-total" ng-if="data.sentiment_score.bad > data.sentiment_score.good">
+                                        {{data.sentiment_score.bad * 100}}% Bad
+                                    </div>
+                                    <div class="content-total" ng-if="data.sentiment_score.good > data.sentiment_score.bad">
+                                        {{data.sentiment_score.good * 100}}% Good
+                                    </div>
+                                </div>
+                                <div class="total-engagement">
+                                    <div class="content-title">
+                                        Total Engagement
+                                    </div>
+                                    <div class="content-total">
+                                        {{data.engagement.total_engagement}}
+                                    </div>
+                                </div>
+                            </section>
+                        </section>
+                    </div>
+                    </div>
+                    <div class="row">
+                        <div class="container-engagement col-md-6 form-group">
+                            <div class="content-engagement">
+                                <div class="title">
+                                    Engagement in Last 7 Days
+                                </div>
+                                <br />
+                                <canvas id="chart-engagement" height="100"></canvas>
+                                <script type="text/javascript">
+                                    var url_current = document.URL;
+                                    var param_url = url_current.substr(url_current.lastIndexOf('/') + 1);
+                                    var url_detail = location.origin + '/api/content-performance/'+param_url;
+                                    $.get(url_detail, (response)=>{
+                                        var detail = response.results;
+
+                                        console.log(detail);
+                                        var day = [];
+                                        var engagments = [];
+                                        (detail[0].engagement.engagement_over_time).map((val)=>{
+                                            day.push(val.time)
+                                            engagments.push(val.total_engagement)
+                                        });
+
+                                        chartDetail(day, engagments);
+                                    });
+                                    function chartDetail(day, engagement){
+                                        Chart.defaults.global.legend.display = false;
+                                        var ctx = document.getElementById("chart-engagement").getContext('2d');
+                                        var myChart = new Chart(ctx, {
+                                            type: 'line',
+                                            data: {
+                                                labels: day,
+                                                datasets: [{
+                                                    label: "Interest",
+                                                    borderColor: "#459ADF",
+                                                    backgroundColor: '#FFFFFF',
+                                                    data: engagement,
+                                                    borderWidth: 0
+                                                }]
+                                            },
+                                            options: {
+                                                elements: {
+                                                    point: {
+                                                        radius: 0,
+                                                        hitRadius: 10,
+                                                        hoverRadius: 5,
+                                                    }
+                                                },
+                                                scales: {
+                                                    xAxes: [{
+                                                        ticks: {
+                                                            beginAtZero: true
+                                                        },
+                                                        gridLines: {
+                                                            display: false,
+                                                        }
+                                                    }],
+                                                    yAxes: [{
+                                                        ticks: {
+                                                            beginAtZero: true
+                                                        },
+                                                        gridLines: {
+                                                            display: false,
+                                                        }
+                                                    }]
+                                                }
+                                            }
+                                        });
+                                    }
+                                    
+                                </script>
+                            </div>
+                        </div>
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+</div>
+
+

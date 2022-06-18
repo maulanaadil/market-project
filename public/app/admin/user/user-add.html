@@ -1,0 +1,44 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 col-sm-offset-2 col-sm-8">
+      <div class="panel">
+        <div class="panel-body">
+          <h1 class="text-center" style="margin-top:0">{{userAdd.title}} User</h1>
+          <hr>
+          <form name="user">
+            <div class="col-sm-8 col-sm-offset-2">
+              <div class="form-group">
+                <input type="text" autofocus="true" required ng-model="userAdd.data.name">
+                <label for="input" class="control-label">Name</label>
+                <i class="bar"></i>
+              </div>
+
+              <div class="form-group">
+                <input type="email" name="emailForm" required ng-model="userAdd.data.email">
+                <label for="input" class="control-label">Email</label>
+                <i class="bar"></i>
+              </div>
+
+              <div class="alert alert-danger" style="background: #F44336; margin-top: -35px;" ng-show="user.emailForm.$error.email">
+                <p>
+                  Invalied email !
+                </p>
+              </div>
+
+              <div class="form-group">
+                <input type="password" required ng-model="userAdd.data.password">
+                <label for="input" class="control-label">Password</label>
+                <i class="bar"></i>
+              </div>
+
+              <button ng-disabled="user.$invalid" class="btn btn-primary btn-block" ng-click="userAdd.save(userAdd.data)">
+                Save
+              </button>
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

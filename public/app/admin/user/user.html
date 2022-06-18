@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-body clearfix">
+        <div class="table-responsive">
+          <table ng-table="user.tableUser" datatable="" show-filter="true" class="display table" style="width: 100%; cellspacing: 0;">
+            <tr ng-repeat="u in $data">
+              <td title="'Name'" filter="{name: 'text'}" sortable="'name'"> {{u.name}} </td>
+              <td title="'E-Mail'" filter="{email: 'text'}" sortable="'email'"> {{u.email}} </td>
+              <td title="'Role'" width="15%" filter="{role: 'text'}" sortable="'role'"> {{u.role}} </td>
+              <td title="'Action'" width="12%" align="center">
+                <button class="btn btn-warning" ng-click="user.update(u.id)">
+                  <span class="icon-note"></span>
+                </button>
+                <button class="btn btn-danger" ng-click="user.delete(u.id, u.name, $index)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

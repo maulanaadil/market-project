@@ -1,0 +1,375 @@
+<style lang="css" scoped>
+    .container {
+        margin-left: 0%;
+    }
+
+    .content {
+        min-height: 100vh;
+        padding-top: 16px;
+        padding-bottom: 16px;
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+
+    .content #back-button {
+        width: 83px;
+        height: 34px;
+        background-color: white;
+        border: none;
+        box-shadow: none;
+        border-radius: 17px;
+        cursor: pointer;
+        font-size: 16px;
+    }
+
+    .content .container-overview {
+        margin-top: 24px;
+        display: flex;
+        flex-direction: row;
+    }
+
+    .container-overview>.overview-info>#title {
+        font-size: 16px;
+        font-weight: 800;
+        margin-top: 4px;
+        margin-right: 16px;
+        margin-left: 16px;
+    }
+
+    .container-overview>.overview-info>#subtitle {
+        font-size: 12px;
+        margin-right: 16px;
+        margin-left: 16px;
+    }
+
+    .content .container-overview>img {
+        border-radius: 50%;
+        width: 46px;
+        height: 46px;
+    }
+
+    .body-info h2 {
+        color: #459adf;
+        font-size: 36px;
+        margin-top: 4px;
+        font-weight: bold;
+    }
+
+    .body-info p {
+        font-size: 12px;
+        margin-top: -8px;
+    }
+
+    #behaviour {
+        margin-top: 36px;
+    }
+
+    #behaviour .row {
+        margin-top: -28px;
+    }
+
+    .section-title {
+        font-size: 16px;
+    }
+
+    .content .container-main-content>.container-interest {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-interest.col-md-6.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+    }
+
+    .content .container-main-content>.row .container-interest.col-md-6.form-group>.content-interest>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content>.container-active-time {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-active-time.col-md-3.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-left: 16px;
+    }
+
+    .content .container-main-content>.row .container-active-time.col-md-3.form-group >.content-active-time>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container> .row .container-active-time.col-md-3.form-group .content-active-time .container-content-active-time {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .content .container-main-content.container > .row .container-active-time.col-md-3.form-group .content-active-time .container-content-active-time img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .content .container-main-content.container > .row .container-active-time.col-md-3.form-group .content-active-time .container-content-active-time .active-time-caption .title {
+        font-weight: 800;
+        color: #459ADF;
+        margin-left: 16px;
+        font-size: 36px;
+    }
+
+    #demographic .row {
+        margin-top: -28px;
+    }
+
+    .content .container-main-content>.container-age-category {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-age-category.col-md-4.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+    }
+
+    .content .container-main-content>.row .container-age-category.col-md-4.form-group>.content-age-category>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+    .content .container-main-content>.container-location {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-location.col-md-4.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-left: 8px;
+    }
+
+    .content .container-main-content>.row .container-location.col-md-4.form-group>.content-location>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content>.container-gender {
+        display: flex;
+        flex-direction: column;
+        border-radius: 2px;
+    }
+
+    .content .container-main-content.container>.row .container-gender.col-md-3.form-group {
+        padding: 24px;
+        background-color: #ffffff;
+        border-radius: 8px;
+        margin-left: 8px;
+    }
+
+    .content .container-main-content>.row .container-gender.col-md-3.form-group>.content-gender>.title {
+        font-size: 14px;
+        color: #757575;
+    }
+
+    .content .container-main-content.container> .row .container-gender.col-md-3.form-group .content-gender .container-content-gender {
+        display: flex;
+        flex-direction: row;
+    }
+
+    .content .container-main-content.container > .row .container-gender.col-md-3.form-group .content-gender .container-content-gender img {
+        width: 36px;
+        height: 78px;
+    }
+
+    .content .container-main-content.container > .row .container-gender.col-md-3.form-group .content-gender .container-content-gender .gender-caption .title {
+        font-weight: 800;
+        color: #e91e63;
+        margin-left: 16px;
+        margin-top: 16px;
+        font-size: 36px;
+    }
+</style>
+
+<div class="container">
+    <div class="row">
+        <div class="content" ng-repeat="persona in personadetail.persona">
+            <div class="container-header">
+                <button id="back-button" ui-sref="persona"><i class="fas fa-arrow-left"></i>&nbsp;&nbsp; Back</button>
+            </div>
+
+            <div class="container-overview">
+                <img ng-src="{{persona.user[0].photo}}">
+                <div class="overview-info">
+                    <div id="title">{{persona.cluster_name}}</div>
+                    <div id="subtitle">Segment Size is <font style="color: #459ADF; font-weight: 800;">{{persona.cluster_size * 100}}%</font> of
+                        1000</div>
+                </div>
+            </div>
+
+            <section id="behaviour">
+                <div class="section-title">
+                    Behaviour Detail
+                </div>
+
+                <div class="container-main-content container">
+                    <div class="row">
+                        <div class="container-interest col-md-6 form-group">
+                            <div class="content-interest">
+                                <div class="title">
+                                    Interest of {{persona.cluster_name}}
+                                </div>
+                                <br />
+                                <canvas id="chart-interest" value="{{personadetail.data}}" height="100"></canvas>
+                            </div>
+                        </div>
+                        <script type="text/javascript">
+                            Chart.defaults.global.legend.display = false;
+                            var url_current = document.URL;
+                            var param_url = url_current.substr(url_current.lastIndexOf('/') + 1);
+                            var url_detail = location.origin + '/api/audience/'+param_url;
+                            $.get(url_detail, (response)=>{
+                                var detail = response.results;
+
+                                console.log(detail);
+                                var interest = [];
+                                var total_interest = [];
+                                (detail[0].behaviour.interest).map((val)=>{
+                                  interest.push(val.interest_name)
+                                  total_interest.push(val.percentage * 100)
+                                });
+
+                                chartDetail(interest, total_interest);
+                            });
+
+                            function chartDetail(label, count){
+                                var ctx = document.getElementById("chart-interest").getContext('2d');
+                                var myChart = new Chart(ctx, {
+                                    type: 'horizontalBar',
+                                    data: {
+                                        labels: label,
+                                        datasets: [{
+                                            label: "Interest",
+                                            backgroundColor: [
+                                                "#459ADF",
+                                                "#459ADF",
+                                                "#459ADF",
+                                                "#459ADF",
+                                                "#459ADF"
+                                            ],
+                                            data: count,
+                                            borderWidth: 0
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            xAxes: [{
+                                                ticks: {
+                                                    beginAtZero: true
+                                                },
+                                                gridLines: {
+                                                    display: false,
+                                                }
+                                            }],
+                                            yAxes: [{
+                                                ticks: {
+                                                    beginAtZero: true
+                                                },
+                                                gridLines: {
+                                                    display: false,
+                                                }
+                                            }]
+                                        }
+                                    }
+                                });
+                            }
+                        </script>
+                        <div class="container-active-time col-md-3 form-group">
+                            <div class="content-active-time">
+                                <div class="title">
+                                    Active Time of {{persona.cluster_name}}
+                                </div>
+                                <br />
+                                <div class="container-content-active-time">
+                                    <img src="https://cdn.zeplin.io/5b5c417c8e733e2230072f0b/assets/B4790433-63A9-4DC9-9593-DAEA1C7ABC0C.png">
+                                    <div class="active-time-caption">
+                                        <div class="title" style="margin-left:20px;">
+                                            {{persona.behaviour.active_time}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="demographic">
+                <div class="section-title">
+                    Demographic Detail
+                </div>
+                <div class="container-main-content container">
+                    <div class="row">
+                        <div class="container-age-category col-md-4 form-group">
+                            <div class="content-age-category">
+                                <div class="title">
+                                    Age Category of {{persona.cluster_name}}
+                                </div>
+                                <br />
+                                <div class="body-info">
+                                    <h2>{{persona.demographics.age[0].age_category}}</h2>
+                                    <p>{{persona.demographics.age[0].percentage * 100}}% in this persona are in age between {{persona.demographics.age[0].age_range}}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-location col-md-4 form-group">
+                            <div class="content-location">
+                                <div class="title">
+                                    Location of {{persona.cluster_name}}
+                                </div>
+                                <br />
+                                <div class="body-info">
+                                    <h2>{{persona.demographics.location[0].location_name}}</h2>
+                                    <p>{{persona.demographics.location[0].percentage * 100}}% in this persona live in this location</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="container-gender col-md-3 form-group">
+                            <div class="content-gender">
+                                <div class="title">
+                                    Gender of {{persona.cluster_name}}
+                                </div>
+                                <br />
+                                <div class="container-content-gender">
+                                    <img src="../../images/female.svg" alt="" ng-if="persona.demographics.gender[0].percentage > persona.demographics.gender[1].percentage">
+                                    <img src="../../images/male.svg" style="object-fit: cover;" alt="" ng-if="persona.demographics.gender[1].percentage > persona.demographics.gender[0].percentage">
+                                    
+                                    <div class="gender-caption">
+                                        <div class="title" ng-if="persona.demographics.gender[0].percentage > persona.demographics.gender[1].percentage">
+                                            {{persona.demographics.gender[0].percentage * 100}}%
+                                        </div>
+                                        <div class="title" ng-if="persona.demographics.gender[1].percentage > persona.demographics.gender[0].percentage" style="color:#459ADF !important">
+                                            {{persona.demographics.gender[1].percentage * 100}}%
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+

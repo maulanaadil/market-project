@@ -1,0 +1,8 @@
+{
+  "name": "Twikipedia for Twitter",
+  "short_name": "Twikipedia",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0E9FFB",
+  "theme_color": "#0E9FFB"
+}

@@ -1,0 +1,446 @@
+<style type="text/css">
+  .fileUpload-container input{
+    display: none;
+  }
+  .fileUpload {
+    position: relative;
+    overflow: hidden;
+    margin: 5px;
+    margin-left: 0px;
+  }
+
+  .fileUpload input.upload {
+    position: absolute;
+    top: 0;
+    right: 0;
+    margin: 0;
+    padding: 0;
+    font-size: 20px;
+    cursor: pointer;
+    opacity: 0;
+    filter: alpha(opacity=0);
+  }
+
+  .post-input-area {
+    position: relative;
+    width: 100%;
+    /*height: 450px;*/
+    min-height: 125px;
+    border: 1px solid #dce1e4;
+  }
+
+  .post-input-area textarea#tweet {
+    width: 100%;
+    max-height: 500px;
+    min-height: 150px;
+    border: none;
+    line-height: 1.5em;
+    font-size: 1.25em;
+  }
+
+  .post-input-area .image-list-suggestion {
+    width: 100%;
+    padding: 5px;
+    display: block;
+    /*display: none;*/
+    /*min-height: 100px;*/
+    position: relative;
+    bottom: 0px;
+  }
+
+  #post-score {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+    margin-bottom: 10px;
+  }
+
+  #post-score>span {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 10px;
+  }
+
+  #post-score .post-score {
+    background-color: #2d92ff;
+    padding: 2.5px 5px;
+    border-radius: 5px;
+    color: white;
+    font-weight: bold;
+  }
+
+  .post-input-area .image-list-suggestion .image-suggestion p {
+    margin-bottom: 5px;
+    line-height: 1em;
+  }
+
+  .post-input-area .image-list-suggestion .image-suggestion {
+    position: relative;
+    padding: 2.5px;
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .post-input-area .image-list-suggestion .image-list {
+    display: flex;
+    flex-flow: row;
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    white-space: nowrap;
+  }
+
+  .image-list .image-item {
+    flex: 1;
+    height: 100px;
+    width: auto;
+    display: inline;
+    padding: 5px;
+  }
+
+  .image-list .image-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+  }
+
+  .image-list .image-item img {
+    height: 100%;
+  }
+
+  .your-image {
+    /*display: none;*/
+    position: relative;
+    max-width: 100px;
+    /*height: 100px;*/
+    /*text-align: center;*/
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 2.5px;
+    margin-bottom: 5px;
+  }
+
+  .your-image img {
+    width: 100%;
+  }
+
+  #close-context {
+    line-height: 1em;
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 2em;
+    font-weight: 600;
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    margin-right: 5px;
+  }
+
+  #close-context:hover {
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.8);
+  }
+
+  #score {
+    margin-top: -50px;
+    float: right;
+    margin-left: 10px;
+  }
+
+  #bestTimeLabel {
+    margin-top: 15px;
+  }
+
+  #twit,
+  #pics {
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  #bestTimeLabel span,
+  #twit,
+  #pics {
+    background: #0e9ffb;
+    color: #fff;
+    padding: 3px 7px 3px 7px;
+    box-sizing: border-box;
+    border-radius: 12px;
+  }
+
+  #tweet-btn-container {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  #tweet-btn {
+    margin-top: 15px;
+  }
+
+  #twit-bold,
+  #pics-bold {
+    font-weight: bold;
+  }
+
+  @media screen and (max-width: 460px) {
+    .post-options {
+      margin-top: 30px;
+      width: 100%;
+    }
+    #score {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      position: relative;
+      float: left;
+      transform: translateX(-10px);
+    }
+    #bestTimeLabel {
+      text-align: center;
+    }
+    #tweet-btn-container {
+      margin-top: 10px;
+      justify-content: center;
+    }
+  }
+</style>
+<script type="text/javascript">
+  function besttime(status) {
+    console.log(status);
+    if (status.checked === true) {
+      var urlImage = location.origin + '/api/user/besttime';
+      $.get(urlImage)
+        .then(setBestTime);
+
+      function setBestTime(response) {
+        var data = response.data;
+        var bestTime = [];
+        for (prop in data) {
+          bestTime.push(data[prop]);
+        }
+
+        var suggestTime = Math.max.apply(null, bestTime);
+        console.log(bestTime);
+        console.log(suggestTime);
+        var best = 0;
+        for (prop in data) {
+          if (data[prop] === suggestTime) {
+            if (prop === 't0to3') {
+              best = '02.00';
+            }
+            if (prop === 't3to6') {
+              best = '05.00';
+            }
+            if (prop === 't6to9') {
+              best = '08.00';
+            }
+            if (prop === 't9to12') {
+              best = '10.00';
+            }
+            if (prop === 't12to15') {
+              best = '14.00';
+            }
+            if (prop === 't15to18') {
+              best = '15.00';
+            }
+            if (prop === 't18to21') {
+              best = '19.00';
+            }
+            if (prop === 't21to24') {
+              best = '21.00';
+            }
+          }
+        }
+        document.querySelector('#bestTimeLabel span').innerHTML = 'Your Best Time at ' + best;
+        document.querySelector('#bestTimeLabel span').style.display = '';
+      }
+    } else {
+      document.querySelector('#bestTimeLabel span').innerHTML = '';
+    }
+
+  }
+
+  function readURL(input) {
+
+
+    if (input.files && input.files[0]) {
+      var reader = new FileReader();
+
+      reader.onload = function(e) {
+        $('#preview').attr('src', e.target.result);
+        $("#preview").css({
+          'display': ''
+        });
+
+      }
+
+      reader.readAsDataURL(input.files[0]);
+    }
+  }
+</script>
+
+<div class="page-header-title">
+  <h3>Feeds</h3>
+  <hr>
+</div>
+
+<div class="profile-cover" style="background:url({{profile.profile.profile_banner_url}})">
+  <div class="row">
+    <div class="col-md-3 profile-image">
+      <div class="profile-image-container">
+        <img ng-src="{{profile.profile.profile_image_url_https}}" alt="">
+      </div>
+    </div>
+    <div class="col-md-12 profile-info">
+      <div class=" profile-info-value">
+        <h3>{{profile.profile.statuses_count}}</h3>
+        <p>Tweets</p>
+      </div>
+      <div class=" profile-info-value">
+        <h3>{{profile.profile.followers_count}}</h3>
+        <p>Followers</p>
+      </div>
+      <div class=" profile-info-value">
+        <h3>{{profile.profile.friends_count}}</h3>
+        <p>Following</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="main-wrapper" style="margin-bottom:200px">
+  <div class="row">
+    <!-- USER PROFILE  -->
+    <div class="col-md-3 user-profile">
+      <h3 class="text-center">{{profile.profile.name}}</h3>
+      <p class="text-center">{{profile.profile.description}}</p>
+      <hr>
+      <ul class="list-unstyled text-center">
+        <li>
+          <p>
+            <i class="fa fa-map-marker m-r-xs"></i>{{profile.profile.location}}
+          </p>
+        </li>
+        <li>
+          <p>
+            <i class="fa fa-link m-r-xs"></i>
+            <a href="{{profile.profile.entities.url.urls[0].expanded_url}}">{{profile.profile.entities.url.urls[0].display_url}}</a>
+          </p>
+        </li>
+      </ul>
+      <hr>
+    </div>
+
+    <!-- USER TIMELINE -->
+    <div class="col-md-6">
+      <div class="panel panel-white">
+        <div class="panel-body">
+          <form name="tweet" enctype="multipart/form-data">
+            <div class="post">
+              <!-- <img src="{{post.image}}" alt=""> -->
+              <!-- <span>{{post}}</span> -->
+              <div class="post-input-area">
+                <textarea class="form-control" id="tweet" onChange="check()" required placeholder="What's Happening?" ng-model="profile.post.postText" ng-change="profile.calLength(profile.post.tweet)" style="resize:none" rows="4=6"></textarea>
+                <div ng-show="profile.post.postImage != null" class="image-list-suggestion">
+                  <div class="your-image">
+                    <div ng-show="profile.post.postImage != null" id="close-context" onclick="closeContext(this)">
+                      &times;
+                    </div>
+                    <img src="{{profile.post.postImage.blob}}" alt="" />
+                  </div>
+                  <div ng-show="imageSuggestion.img != null" class="image-suggestion">
+                    <div id="close-context" onclick="closeContext(this)">
+                      &times;
+                    </div>
+                    <p><b>Image Suggestion</b></p>
+                    <p>{{imageSuggestion.msg}}</p>
+                    <div class="image-list">
+                      <div class="image-item" ng-repeat="img in imageSuggestion.img">
+                        <img src="{{img}}" alt="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="fileUpload-container" style="min-width:100px; max-width:150px;">
+                <label class="btn btn-primary btn-transparent" data-toggle="tooltip" title="Attach Picture<br/>From Library">
+                  <img src="../images/dashboard/ic-add-image.png" alt="add picture">
+                  <input type="file" file-model="tempFile">
+                </label>
+                <!-- <div class="fileUpload btn btn-primary">
+                  <span class="fa fa-camera"></span>
+                  <input type="file" class="upload" file-model="tempFile" />
+                </div> -->
+              </div>
+              <div id="post-score">
+                <span ng-show="profile.post.postScore.text.value > 0">
+                  <label for="">Text Score :</label> <span class="post-score">{{profile.post.postScore.text.value}}/100 ({{profile.post.postScore.text.summary}})</span>
+                </span>
+                <span ng-show="profile.post.postScore.image.value != null">
+                  <label for="">Image Quality :</label> <span class="post-score">{{profile.post.postScore.image.value}}/100 ({{profile.post.postScore.image.summary}})</span>
+                </span>
+              </div>
+              <!-- <div class="post-options">
+                <div>
+                  <input type="checkbox" onChange="besttime(this)" ng-model="profile.post.schedule" ng-init="profile.post.schedule=false"> Schedule Tweet
+                </div>
+                <input id="profile-schedule" class="flatpickr form-flatpickr col-sm-3 form-control" placeholder="Pick a date and time" ng-hide="profile.post.schedule == false" data-mindate="today" data-enabletime="true" ng-model="profile.post.time" data-time_24hr="true"
+                  data-timeFormat="H:i">
+              </div> -->
+              <!-- <div id="bestTimeLabel">
+                <span style="display:none"></span>
+              </div>
+              <div id="tweet-btn-container">
+                <button ng-disabled="tweet.$invalid" id="tweet-btn" class="btn btn-primary btn-social" ng-click="profile.tweet(profile.post)">
+                ({{profile.length}}) Tweet
+                </button>
+              </div> -->
+              <button style="margin-top: 20px" class="btn btn-primary pull-right" ng-click="profile.sendPost(profile.post)">
+                Post
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-3 m-t-d"></div>
+    <div class="col-md-6 m-t-md">
+      <a class="twitter-timeline" data-tweet-limit="10" ng-href="https://twitter.com/{{profile.username}}">Tweets by {{'@' + profile.username}}</a>
+      <script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </div>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+  $('textarea#tweet').on("change", function() {
+    angular.element($(this)).scope().postScore($(this).val())
+  })
+  // $('.fileUpload-container #uploadBtn').on('change', function() {
+  //   if (this.files) {
+  //     post.image = this.files[0]
+  //     console.log(post.image);
+  //
+  //     $('.image-list-suggestion').css({
+  //       'display' : 'block'
+  //     })
+  //     $('.your-image').css('display','block')
+  //     $('.your-image > img').attr('src',URL.createObjectURL(post.image))
+  //   }
+  // })
+
+  function getFile(input) {
+
+  }
+
+
+  function closeContext(element) {
+    console.log($(element));
+    $(element).parent().css('display', 'none')
+  }
+
+  flatpickr('.flatpickr', {
+    minDate: "today"
+  })
+</script>

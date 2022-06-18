@@ -1,0 +1,77 @@
+
+<style>
+  div[data="post-data"]#reply-mention{
+    margin-bottom: 10px;
+  }
+  div[data="post-data"]#reply-mention textarea{
+    height: 100px;
+    min-height: 50px;
+    max-height: none;
+    padding:2px 7px;
+  }
+</style>
+
+<div class="page-header-title">
+  <h3>Feedback</h3>
+  <hr>
+</div>
+<ul class="list-unstyled" ng-if="mentions.mention.length > 0">
+  <li class="timeline-item" ng-repeat="mentions in mentions.mention">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" style="margin-bottom:20px;">
+        <div class="panel panel--body">
+          <div class="panel--profile">
+            <div class="panel--profile__left">
+              <div class="panel--img">
+                <img ng-src="{{mentions.user.profile_image_url}}" alt="">
+              </div>
+              <div class="panel--name">
+                <a href="http://twitter.com/{{mentions.user.screen_name}}" target="_blank"><p>{{mentions.user.name}} <small>@{{mentions.user.screen_name}}</small></p></a>
+               </div>
+            </div>
+            <div class="panel--profile__right">
+              <small>Mention at {{mentions.created_at | date : 'MMM d, y H:mm'}}</small>
+            </div>
+          </div>
+          <div class="panel--status">
+            <p >{{mentions.text}}</p>
+        </div>
+
+          <div class="panel--options">
+            <a class="btn btn-primary" ng-click="mentions.setMention(t.user.screen_name, $index)" data-toggle="modal" data-target=".modal-{{$index}}"><i class="icon-note"></i> Reply</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+   <!-- MODAL -->
+    <div class="modal fade modal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <form name="tweet">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myLargeModalLabel">Mention {{mentions.user.screen_name}}</h4>
+            </div>
+            <div class="modal-body">
+              <div id="reply-mention" data="post-data" class="form-group">
+                  <textarea id="tweet-{{$index}}" required placeholder="What's Happening?" ng-change="mentions.calLength(user.post.tweet, $index)" ng-model="user.post.tweet" style="resize:none" rows="4=6">@ {{mention.user.screen_name}}</textarea>
+                  <!-- <span id="word-limit">({{mentions.length}})</span> -->
+              </div>
+
+            </div>
+            <div class="modal-footer flex-container-column">
+              <!-- <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button> -->
+              <button ng-disabled="tweet.$invalid" id="tweet-btn{{$index}}" class="btn btn-primary pull-right btn-primary-custom" ng-click="user.tweet($index)">Reply</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<div ng-if="mentions.mention.length===0" class="no-data">
+  <h1>No Mentions found :(</h1>
+</div>

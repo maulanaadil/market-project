@@ -1,0 +1,121 @@
+<style type="text/css">
+#score{ 
+      margin-left: 10px;
+      color: green;
+      margin-bottom: 20px;
+      width: 100%;
+  }
+#twit{
+  float: right;
+}  
+</style>
+<div id="main-wrapper" style="margin-bottom:10px">
+  <div class="row">
+    <div class="col-md-6 m-t-lg col-md-offset-3">
+      <div class="panel panel-white">
+        <div class="panel-body">
+          <form name="tweet">
+            <div class="post">
+              <textarea id="tweet" onChange="check()" class="form-control" required placeholder="What's Happening?" ng-model="postBtt.post.tweet" ng-change="postBtt.calLength(postBtt.post.tweet)" style="resize:none" rows="4=6"></textarea>
+                 <div id="score">
+                   <div id="twit"></div>
+                 </div> 
+              <div class="post-options">
+                
+                <div>Your Best Time to Tweet is @ <span id="bestTimeLabel"></span></div> 
+                <input style="margin-left:0" id="btt-schedule" class="flatpickr form-flatpickr col-sm-3 form-control" placeholder="Pick a date" data-mindate="today" ng-model="postBtt.post.time"> 
+                <button ng-disabled="tweet.$invalid" id="tweet-btn" class="btn btn-primary pull-right btn-social" ng-click="postBtt.tweet(postBtt.post)">
+                  ({{postBtt.length}}) Post Tweet
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="col-md-6 col-md-offset-3 panel panel-body">
+  <canvas id="myChart"></canvas>
+</div>
+
+<script>
+  var ctx = $("#myChart");
+
+  flatpickr('.flatpickr', {
+    minDate: "today"
+  })
+
+  $.get(location.origin + '/api/user/besttime')
+    .then(createChart);
+
+  function createChart(response) {
+    var data = response.data;
+    var bestTime = [];
+    for (prop in data) {
+      bestTime.push(data[prop]);
+    }
+
+    var suggestTime = Math.max.apply(null, bestTime);
+    console.log(bestTime);
+    console.log(suggestTime);
+    for (prop in data) {
+      if(data[prop] === suggestTime) {
+        if(prop ==='t0to9') {
+          document.querySelector('#bestTimeLabel').innerHTML = '06.00';
+        }
+        if(prop ==='t9to12') {
+          document.querySelector('#bestTimeLabel').innerHTML = '09.00';
+        }
+        if(prop ==='t12to15') {
+          document.querySelector('#bestTimeLabel').innerHTML = '12.00';
+        }
+        if(prop ==='t15to18') {
+          document.querySelector('#bestTimeLabel').innerHTML = '15.00';
+        }
+        if(prop ==='t18to21') {
+          document.querySelector('#bestTimeLabel').innerHTML = '18.00';
+        }
+        if(prop ==='t21to24') {
+          document.querySelector('#bestTimeLabel').innerHTML = '21.00';
+        }
+      }
+    }
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['06.00', '09.00', '12.00', '15.00', '18.00', '21.00'],
+        datasets: [{
+          label: 'Best Time to Tweets',
+          data: bestTime,
+          borderWidth: 1,
+          lineTension: 0.1,
+          backgroundColor: "rgba(75,192,192,0.4)",
+          borderColor: "rgba(75,192,192,1)",
+          borderCapStyle: 'butt',
+          borderJoinStyle: 'miter',
+          pointBorderColor: "rgba(75,192,192,1)",
+          pointBackgroundColor: "#fff",
+          pointBorderWidth: 1,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          pointHoverBorderColor: "rgba(220,220,220,1)",
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+
+  }
+</script>

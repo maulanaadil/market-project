@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-body clearfix">
+        <div class="table-responsive">
+          <table ng-table="crawl.tableArticleWikipedia" datatable="" show-filter="true" class="display table" style="width: 100%; cellspacing: 0;">
+            <tr ng-repeat="article in $data">
+              <td title="'Title'" filter="{article: 'text'}" sortable="'article'"> {{article.title}} </td>
+              <td title="'Category'" filter="{categoryName: 'text'}" sortable="'categoryName'"> {{article.category.categoryName}} </td>
+              <td title="'Action'" width="12%" align="center">
+                <button class="btn btn-danger" ng-click="crawl.delete(article._id, article.title, $index)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

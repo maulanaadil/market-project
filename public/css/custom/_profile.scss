@@ -1,0 +1,21 @@
+.post-options{
+  display: -webkit-flex;
+  display: -moz-flex;
+  display: -ms-flex;
+  display: -o-flex;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.form-flatpickr {
+  width: 30% !important;
+  margin-left: -60px;
+}
+
+.navbar {
+
+  .logo-box {
+    background: $blue-login;
+  }
+}

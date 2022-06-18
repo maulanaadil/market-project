@@ -1,0 +1,114 @@
+.overlay
+form.search-form(action='#', method='GET')
+  .input-group
+    input.form-control.search-input(type='text', name='search', placeholder='Search...')
+    span.input-group-btn
+      button.btn.btn-default.close-search.waves-effect.waves-button.waves-classic(type='button')
+        i.fa.fa-times
+  // Input Group
+// Search Form
+main.page-content.content-wrap
+  .navbar
+    .navbar-inner
+      .sidebar-pusher
+        a.waves-effect.waves-button.waves-classic.push-sidebar(href='javascript:void(0);')
+          i.fa.fa-bars
+      .logo-box
+        a.logo-text(href='/')
+          span Twikipedia 
+      .topmenu-outer
+        .top-menu
+          ul.nav.navbar-nav.navbar-right
+            li.dropdown
+              a.dropdown-toggle.waves-effect.waves-button.waves-classic(href='javascript:;', data-toggle='dropdown', aria-expanded='true')
+                span.user-name
+                  | #{user.name || user.email || user.id}
+                  i.fa.fa-angle-down
+                img.img-circle.avatar(src='#{user.picture}', width='40', height='40', alt='')
+              ul.dropdown-menu.dropdown-list(role='menu')
+                li(role='presentation')
+                  a(href='/logout')
+                    i.icon-logout.m-r-xs
+                    | Log out
+            li
+              a.waves-effect.waves-button.waves-classic.show-search(href='javascript:void(0);')
+                i.fa.fa-search  
+            
+  // Navbar
+  .page-sidebar.sidebar
+    .page-sidebar-inner.slimscroll
+      .sidebar-header
+        .sidebar-profile
+          .sidebar-profile-image
+            img.img-circle.img-responsive(src='#{user.picture}', alt='')
+          .sidebar-profile-details
+            span
+              | #{user.name || user.email || user.id}
+              br
+              small #{user.role || user.username} 
+      ul.menu.accordion-menu
+        li(ui-sref-active='active')
+          a.waves-effect.waves-button(ui-sref='dashboard')
+            span.menu-icon.icon-home
+            p Dashboard
+        li.droplink(ui-sref-active='active')
+          a.waves-effect.waves-button(href='javascript:;')
+            span.menu-icon.icon-list
+            p Category
+            span.arrow
+          ul.sub-menu
+            li.no-border
+              a(ui-sref='categoryAdd') Add Category
+            li.no-border
+              a(ui-sref='category') Show Categories
+        li(ui-sref-active='active')
+          a.waves-effect.waves-button(ui-sref='preprocessing')
+            span.menu-icon.icon-layers
+            p Preprocessing
+        li.droplink(ui-sref-active='active')
+          a.waves-effect.waves-button(href='javascript:;')
+            span.menu-icon.icon-globe
+            p Crawl
+            span.arrow
+          ul.sub-menu
+            li.no-border
+              a(ui-sref='crawlAdd') Crawl Article
+            li.no-border
+              a(ui-sref='crawl') List Article
+        li.droplink(ui-sref-active='active')
+          a.waves-effect.waves-button(href='#')
+            span.menu-icon.icon-social-twitter
+            p Tweet
+            span.arrow
+          ul.sub-menu
+            li.no-border
+              a(ui-sref='searchTweet') Search Tweets
+            li.no-border
+              a(ui-sref='searchUser') Search User
+            li.no-border
+              a(ui-sref='trainingTweet') Training Set
+        li.droplink(ui-sref-active='active')
+          a.waves-effect.waves-button(href='javascript:;')
+            span.menu-icon.icon-user-follow
+            p Manage User
+            span.arrow
+          ul.sub-menu
+            li.no-border
+              a(ui-sref='userAdd') Add User
+            li.no-border
+              a(ui-sref='user') Show User
+        li
+          a.waves-effect.waves-button#logout(href='/logout')
+            span.menu-icon.icon-logout
+            p Log Out
+    // Page Sidebar Inner
+  // Page Sidebar
+  .page-inner
+    #main-wrapper
+      ui-view
+      // Row
+    // Main Wrapper
+    .page-footer
+      p.no-s 2016 © Twikipedia by Mikqi.
+  // Page Inner
+.cd-overlay

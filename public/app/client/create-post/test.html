@@ -1,0 +1,928 @@
+<style>
+        #example-vertical h3{
+            font-size: 12px;
+            padding: 5px;
+        }
+        .ads{
+            border: 0px;
+        }
+        label{
+            font-size: 14px;
+            font-weight: 550;
+        }
+        .modal-dialog{
+            width:60%;
+        }
+        .modal-body{
+            height: 800px;
+        }
+    </style>
+      <style type="text/css">
+        .title {
+          height: 34px;
+          opacity: 0.9;
+          font-family: 'Lato', sans-serif;
+          font-size: 18px;
+          font-weight: bold;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          list-style: none;
+          letter-spacing: normal;
+          color: #000000;
+        }
+        .content {
+          width: 262px;
+          height: 32px;
+          font-family: 'Lato', sans-serif;
+          font-size: 14px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #000000;
+        }
+        .child-content {
+          width: 175px;
+          height: 32px;
+          font-family: 'Lato', sans-serif;
+          font-size: 12px;
+          font-weight: normal;
+          font-style: normal;
+          font-stretch: normal;
+          line-height: normal;
+          letter-spacing: normal;
+          color: #000000;
+        }
+        .margin-bettwen-row{
+          margin: 10px 0px;
+        }
+      </style>
+    <!-- persona -->
+    <style lang="css" scoped>
+        #titles{
+            color:black;
+        }
+        #container-interest{
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+        
+        .container{
+            margin-left: 5px; 
+            margin-right: 16px; 
+            /* margin-top: 51px; */
+            margin-bottom: 16px;
+            align-items: left;
+            width: 300px;
+            height: 220 px;
+            border-radius: 5px;
+            border: 1px #eee solid;
+            background-color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        
+        .container .container-header {
+            display: flex;
+            width: 100%;
+            flex-direction: row;
+            justify-content: space-between;
+        }
+        
+        .container .header-title {
+            display: flex;
+            flex-direction: row
+        }
+        
+        .container .header-title img{
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+        }
+        
+        .container .header-segment {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .container .header-segment > .title {
+            font-size: 13px;
+        }
+        
+        .container .header-segment .body {
+            font-size: 15px;
+            font-weight: 500;
+        }
+        
+        
+        .container h5 {
+            margin-top: 10px;
+            margin-left: 10px;
+            font-size: 18px;
+            font-family: lato;
+            font-weight: 500;
+            
+        }
+        
+        #interest {
+            margin-top: 19px;
+            font-size: 15px;
+            font-weight: 500;
+            width: 100%;
+        }
+        
+        #demography {
+            margin-top: 10px;
+            font-size: 15px;
+            font-weight: 500;
+            width: 100%;
+            color: black;
+        }
+        
+        #action-button{
+            margin-top: 20px;
+            width: 100%;
+            text-align: center;
+        }
+        
+        #btn-persona{
+            margin-top: 10px;
+            margin-left: 1px;
+            margin-right: 1px;
+            background: white;
+            box-shadow: none;
+            width: 151px;
+            height: 40px;
+            border-radius: 2px;
+            border: solid 1px #459adf;
+            color:#459adf;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        
+        #target-segment{
+            /* margin-right: 10px;
+            background: #3883e2;
+            box-shadow: none;
+            color: white;
+            width: 136px;
+            height: 34px;
+            border: none;
+            font-size: 14px;
+            cursor: pointer; */
+        }
+        </style>
+        <style lang="css" scoped>
+      
+          .badge-primary{
+              font-size: 14px;
+              font-weight: 500;
+              color: #ffffff;
+              background-color: #3883e2;
+              margin-right: 5px;
+          }
+          
+          .badge-pill {
+              padding: 1em;
+              /* padding-left: 1em; */
+              padding-top: 0.5em;
+              padding-bottom: 0.5em;
+              border:0px;
+              border-radius: 10rem;
+              font-size: 15px;
+          }
+          
+          </style>
+      <style lang="css" scoped>
+      
+        #container-dm{
+            display: flex;
+            /* flex-direction: row; */
+            justify-content: space-between;
+            margin-top: 5px;
+        }
+        
+        #container-dm .demography-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            
+        }
+        
+        #container-dm > .demography-info > #title {
+            font-size: 14px;
+            /* margin-right: 30px; */
+        }
+        
+        #container-dm > .demography-info #body {
+            font-size: 14px;
+            font-weight: 550;
+            /* margin-right: 30px; */
+        }
+        .hmm-list {
+          max-height: 506px;
+          overflow-y: scroll;
+          border: solid 1px #979797;
+        }
+        .tweet-list{
+          width: 100%;
+          height: 506px;
+        }
+        .tweet-list-img {
+          flex: none;
+          align-items: center;
+        }
+    
+        .tweet-list-img img {
+          width: 100%;
+        }
+        .tweet-list-header{
+          margin:5px;
+          color : #000000;
+          font-weight: 550;
+        }
+        .tweet-list-content {
+          align-items: flex-start;
+        }
+        .tweet{
+          text-align: left;
+          font-size: 12px;
+        }
+        .post-score{
+             background-color: #2d92ff;
+            padding: 2.5px 5px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold
+        }
+        .scroll-vertical {
+            display: flex;
+            flex-wrap: nowrap;
+            overflow-x: auto; 
+        }
+        .scroll-vertical .container {
+              flex: 0 0 auto;
+        }
+        ::-webkit-scrollbar {
+            width: 7px;
+            height: 7px;
+        }
+    
+        /* Track */
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        
+        /* Handle */
+        ::-webkit-scrollbar-thumb {
+            background: #03A9F4; 
+        }
+    
+        /* Handle on hover */
+        ::-webkit-scrollbar-thumb:hover {
+            background: #1976D2; 
+        }
+        div{
+          font-family: 'Lato', sans-serif;
+        }
+        </style>    
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ads.cancel()">&times;</button>
+      
+        <div id="sosmed-option">
+          <span class="sosmed-target">
+            <!-- <span><input type="checkbox"> <i class="fa fa-twitter"></i></span> -->
+          <span id="profile-info">
+          </span>
+          </span>
+        </div>
+      
+      </div>
+      <div class="modal-body">
+            <div id="example-vertical">
+                    <h3>Create Campaign</h3>
+                    <section>
+                        <div class="card" style="width: 100%;">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                <span class="title">Step 1 : Create Campaign</span>
+                              </li>
+                              <li class="list-group-item">
+                                 <span class="content">Campaign</span>
+                        
+                                  <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Campaign Name</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 10px;" class="form-control form-control-sm" >
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                    <div class="col-md-3">
+                                      <span class="child-content">Campaign Objective</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <select class="form-control form-control-sm" name="" id="">
+                                        <option value="">Brand Awarness</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                        
+                                  <span class="content" >Ad Account</span>
+                        
+                                  <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Ad Group Name</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 10px;" class="form-control form-control-sm" >
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content"></span>
+                                    </div>
+                                    <div class="col-md-4">
+                                      <!-- <input type="text" class="form-control form-control-sm" > -->
+                                        <div id="datetimepicker" class="input-append date">
+                                          <input type="text" placeholder="Specify Time" id="ad_date1" style="padding: 10px;">
+                                          <span class="add-on" style="height: 32px; background: white;">
+                                            <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                          </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <!-- <input type="text" class="form-control form-control-sm" > -->
+                                          <div id="datetimepicker2" class="input-append date">
+                                            <input type="text" placeholder="Specify Time" id="ad_date2" style="padding: 10px;">
+                                            <span class="add-on" style="height: 32px; background: white;">
+                                              <i  data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+                                            </span>
+                                          </div>
+                                      </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Set a total group budget (Optional)</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 15px;" class="form-control form-control-sm" >
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                    <div class="col-md-3">
+                                      <span class="child-content">Bid Type</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                      <select class="form-control form-control-sm" name="" id="">
+                                        <option value="">Bid type</option>
+                                      </select>
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                      <div class="col-md-3">
+                                        <span class="child-content">Optimization Preference</span>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <select class="form-control form-control-sm" name="" id="">
+                                          <option value="">Maximum</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                        
+                              </li>
+                            </ul>
+                          </div>
+                    </section>
+                    <h3>Audience</h3>
+                    <section>
+                        <div class="card" style="width: 100%;">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                <span class="title">Step 2 : Audience</span>
+                              </li>
+                              <li class="list-group-item">
+                                 <span class="content">Choose from your persona</span>
+                        
+                                  <hr style="margin-top: 5px; margin-bottom: 5px;">  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <!-- persona -->
+                                    <div class="row scroll-vertical" style="margin:0px">
+                                        <div class="col-md-4 container">
+                                                <div class="container-header">
+                                                    <div class="header-title">
+                                                        <img src="https://pbs.twimg.com/profile_images/781019876815212544/c-YHyJt-_normal.jpg">
+                                                        <h5 id="titles">Persona Travel</h5>
+                                                    </div>
+                                                    <div class="header-segment" id="titles">
+                                                        <div style="margin:0px">
+                                                                <input type="radio" style="margin-right: 5px;padding: 0px; float:right">
+                                                        </div>
+                                                        <div class="title">Segment Size</div> 
+                                                        <div class="body">20% of 1000</div>
+                                                    </div>
+                                                </div>
+                                                <section id="interest">
+                                                    <span id="titles">Interested In</span>
+                                                    <section id="container-interest">
+                                                      <button class="badge-pill badge-primary">Travel</button>
+                                                      <button class="badge-pill badge-primary">Sendal</button>
+                                                      <button class="badge-pill badge-primary">Sepatu</button>
+                                                    </section>
+                                                </section>
+                                                <section id="demography">
+                                                    Demographic Overview
+                                                    <section id="container-dm">
+                                                      <div class="demography-info">
+                                                          <div id="title">Location</div>
+                                                          <div id="body">Bandung</div>
+                                                      </div>
+                                                      <div class="demography-info">
+                                                          <div id="title">Gender</div>
+                                                          <div id="body">Male</div>
+                                                      </div>
+                                                      <div class="demography-info">
+                                                          <div id="title">Age Category</div>
+                                                          <div id="body">Older</div>
+                                                      </div>
+                                                  </section>
+                                                </section>
+                                            </div>
+    
+                                    <!-- Col 2 -->
+                                        <div class="col-md-4 container">
+                                          <div class="container-header">
+                                              <div class="header-title">
+                                                  <img src="https://pbs.twimg.com/profile_images/781019876815212544/c-YHyJt-_normal.jpg">
+                                                  <h5 id="titles">Persona Fashion</h5>
+                                              </div>
+                                              <div class="header-segment" id="titles">
+                                                  <div style="margin:0px">
+                                                          <input type="radio" style="margin-right: 5px;padding: 0px; float:right">
+                                                  </div>
+                                                  <div class="title">Segment Size</div> 
+                                                  <div class="body">70% of 1000</div>
+                                              </div>
+                                          </div>
+                                          <section id="interest">
+                                              <span id="titles">Interested In</span>
+                                              <section id="container-interest">
+                                                <button class="badge-pill badge-primary">T-Shirt</button>
+                                                <button class="badge-pill badge-primary">Clotes</button>
+                                                <button class="badge-pill badge-primary">Make Up</button>
+                                              </section>
+                                          </section>
+                                          <section id="demography">
+                                              Demographic Overview
+                                              <section id="container-dm">
+                                                <div class="demography-info">
+                                                    <div id="title">Location</div>
+                                                    <div id="body">Bandung</div>
+                                                </div>
+                                                <div class="demography-info">
+                                                    <div id="title">Gender</div>
+                                                    <div id="body">Female</div>
+                                                </div>
+                                                <div class="demography-info">
+                                                    <div id="title">Age Category</div>
+                                                    <div id="body">Millenials</div>
+                                                </div>
+                                            </section>
+                                          </section>
+                                      </div>
+                                      <div class="col-md-4 container">
+                                          <div class="container-header">
+                                              <div class="header-title">
+                                                  <img src="https://pbs.twimg.com/profile_images/781019876815212544/c-YHyJt-_normal.jpg">
+                                                  <h5 id="titles">Persona Foods</h5>
+                                              </div>
+                                              <div class="header-segment" id="titles">
+                                                  <div style="margin:0px">
+                                                          <input type="radio" style="margin-right: 5px;padding: 0px; float:right">
+                                                  </div>
+                                                  <div class="title">Segment Size</div> 
+                                                  <div class="body">10% of 1000</div>
+                                              </div>
+                                          </div>
+                                          <section id="interest">
+                                              <span id="titles">Interested In</span>
+                                              <section id="container-interest">
+                                                <button class="badge-pill badge-primary">Thai</button>
+                                                <button class="badge-pill badge-primary">Juice</button>
+                                                <button class="badge-pill badge-primary">Sea Food</button>
+                                              </section>
+                                          </section>
+                                          <section id="demography">
+                                              Demographic Overview
+                                              <section id="container-dm">
+                                                <div class="demography-info">
+                                                    <div id="title">Location</div>
+                                                    <div id="body">Bandung</div>
+                                                </div>
+                                                <div class="demography-info">
+                                                    <div id="title">Gender</div>
+                                                    <div id="body">Female</div>
+                                                </div>
+                                                <div class="demography-info">
+                                                    <div id="title">Age Category</div>
+                                                    <div id="body">Millenials</div>
+                                                </div>
+                                            </section>
+                                          </section>
+                                      </div>
+                                       </div>
+                                    <!-- endpersona -->
+                        
+                                  <hr style="margin-top: 5px; margin-bottom: 10px;">  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Your Audience</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 10px;" class="form-control form-control-sm" >
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Location</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                      <input type="text" style="padding: 15px;" class="form-control form-control-sm" >
+                                    </div>
+                                </div>
+                                <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content">Age</span>
+                                    </div>
+                                    <div class="col-md-6">
+                                            <div class="radio">
+                                                    <label><input type="radio" name="optradio" onclick="closeAges()">All Age</label>
+                                            </div>
+                                            <div class="radio">
+                                                    <label><input type="radio" name="optradio" onclick="showAges()">Age Range</label>
+                                            </div>
+                                    </div>
+                                </div>
+                                <div class="row margin-bettwen-row" id="ages" style="display:none; margin-left: 25%;">
+                                  <div class="col-md-3">
+                                    <select class="form-control form-control-sm">
+                                      <option value="16">16</option>
+                                      <option value="17">17</option>
+                                      <option value="18">18</option>
+                                      <option value="19">19</option>
+                                      <option value="20">20</option>
+                                      <option value="21">21</option>
+                                    </select>
+                                  </div>
+                                  <div class="col-md-2">
+                                    <hr style="border:2px black solid">
+                                  </div>
+                                  <div class="col-md-3">
+                                    <select class="form-control form-control-sm">
+                                      <option value="16">16</option>
+                                      <option value="17">17</option>
+                                      <option value="18">18</option>
+                                      <option value="19">19</option>
+                                      <option value="20">20</option>
+                                      <option value="21">21</option>
+                                    </select>
+                                  </div>
+                              </div>
+                                <div class="row margin-bettwen-row" >
+                                      <div class="col-md-3">
+                                        <span class="child-content">Gender</span>
+                                      </div>
+                                      <div class="col-md-6">
+                                        <select class="form-control form-control-sm" name="" id="">
+                                          <option value="">Male</option>
+                                          <option value="">Female</option>
+                                          <option value="">Other</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                    <div class="row margin-bettwen-row" >
+                                      <div class="col-md-3">
+                                            <span class="child-content">Audience Feature</span>
+                                          </div>
+                                          <div class="col-md-8">
+                                            <input type="text" style="padding: 15px;" class="form-control form-control-sm" >
+                                          </div>
+                                    </div>
+                              </li>
+                            </ul>
+                          </div>
+                    </section>
+                    <h3>Budget and Schedule</h3>
+                    <section>
+                            <div class="card" style="width: 100%;">
+                                    <ul class="list-group list-group-flush">
+                                      <li class="list-group-item">
+                                        <span class="title">Step 3 :Budget and Schedule</span>
+                                      </li>
+                                      <li class="list-group-item">
+                                         <span class="content">Budget</span>
+                                
+                                          <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                                
+                                          <div class="row margin-bettwen-row" >
+                                            <div class="col-md-3">
+                                              <span class="child-content">Set Daily Budget</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                              <input type="text" style="padding: 10px;" class="form-control form-control-sm" >
+                                            </div>
+                                          </div>
+                                
+                                          <div class="row margin-bettwen-row">
+                                            <div class="col-md-3">
+                                              <span class="child-content">Set Total Budget</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                 <input type="text" style="padding: 10px;" class="form-control form-control-sm" >
+                                            </div>
+                                          </div>
+                                
+                                          <span class="content" >Schedule</span>
+                                
+                                          <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                                
+                                          <div class="row margin-bettwen-row" >
+                                            <div class="col-md-3">
+                                              <span class="child-content">Schedule</span>
+                                            </div>
+                                            <div class="col-md-8">
+                                                    <div class="radio">
+                                                            <label><input type="radio" name="optradio" onclick="closeDates()">Start immediately, Run continously</label>
+                                                    </div>
+                                                    <div class="radio">
+                                                            <label><input type="radio" name="optradio" onclick="showDates()">Set a start and end date</label>
+                                                    </div>
+                                            </div>
+                                          </div>
+                                          
+                                            <div class="row margin-bettwen-row" id="dates" style="display: none; background:#eee;width:75%; margin-left:70px; padding:30px">
+                                                    <div class="row margin-bettwen-row"  >
+                                                    <div class="col-md-3">
+                                                            <span class="child-content">Start</span>
+                                                        </div>
+                                                         <div class="col-md-8">
+                                                              <div id="datetimepicker2" class="input-append date">
+                                                                <input type="text" placeholder="Specify Time" id="date-budget1" class="flatpickr form-flatpickr form-control" data-mindate="today" data-enabletime="true" data-time_24hr="true" data-timeFormat="H:i" style="padding: 10px;width: 70% !important;">
+                                                              </div>
+                                                          </div>
+                                                     </div>
+                                                     <div class="row margin-bettwen-row" id="dates" >
+                                                            <div class="col-md-3">
+                                                                    <span class="child-content">End</span>
+                                                                </div>
+                                                                 <div class="col-md-8">
+                                                                      <div id="datetimepicker2" class="input-append date">
+                                                                        <input type="text" placeholder="Specify Time" id="date-budget2" class="flatpickr form-flatpickr form-control" data-mindate="today" data-enabletime="true" data-time_24hr="true" data-timeFormat="H:i" style="padding: 10px; width: 70% !important;">
+                                                                      </div>
+                                                                  </div>
+                                                             </div>
+                                            </div>
+                                      </li>
+                                    </ul>
+                                  </div>
+                    </section>
+                    <h3>Content</h3>
+                    <section>
+                      <div class="card" style="width: 100%;">
+                        <ul class="list-group list-group-flush">
+                          <li class="list-group-item">
+                            <span class="title">Step 4 :Content</span>
+                          </li>
+                          <li class="list-group-item">
+                             <span class="content">Content</span>
+                    
+                              <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                    
+                              <div class="row margin-bettwen-row" >
+                                <div class="col-md-12">
+                                  <label for="" style="font-size: 550">Choose Your Content</label> <br>
+                                  <input type="text"class="form-control form-control" style="padding: 10px;" >
+                                </div>
+                              </div>
+                              <div class="row margin-bettwen-row" >
+                                  <div class="col-md-12">
+                                    <div class="hmm-list tweet-list">
+                                        <div class="row" style="margin:0px; padding: 0px; margin-left:5px;border-bottom: 1px solid #bbb9b9; margin-top:10px;">
+                                            <div class="col-md-2 tweet-list-img" style="margin:0px; padding: 0px;">
+                                              <div class="row" style="margin:0px;">
+                                                  <div class="col-md-1" style="margin:0px;">
+                                                      <input type="radio" style="margin-top:20px; margin-left:5px;">
+                                                  </div>
+                                                  <div class="col-md-2" style="margin:0px; padding: 0px">
+                                                      <img src="https://pbs.twimg.com/profile_images/781019876815212544/c-YHyJt-_normal.jpg" class="img-circle" style="width: 50px;  margin-left:10px;">
+                                                  </div>
+                                              </div>
+                                            </div>
+                                            <div class="col-md-9 tweet-list-content" style="margin:0px; padding: 0px">
+                                              <div class="tweet-list-header">
+                                                 UNIKOM CodeLabs &nbsp;@UnikomCodelabs
+                                              </div>
+                                              <div class="tweet">
+                                                  <p>Hello nikmati promo cashback dari kita hingga 20% mulai dari hari ini sampe minggu depan #CodelabsCashback </p>
+                                              </div>
+                                            </div>
+                                            <div class="row" style="margin:0px; margin-bottom:10px;">
+                                                <div class="col-md-4">
+                                                    <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/0ffa27e83b4f44b4821ba8b20082b44b_9366/Solarboost_Shoes_Black_CQ3168_01_standard.jpg" class="img-responsive" style="width: 40px;  margin-left:40px;">
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div id="post-score">
+                                                        <span>
+                                                          <label for="">Image Quality </label> <br> <span class="post-score">80/100 (Good Image)</span>
+                                                        </span>
+                                                      </div>
+                                                </div>
+                                                <div class="col-md-4">
+                                                    <div id="post-score">
+                                                        <span>
+                                                          <label for="">Post Quality </label> <br> <span class="post-score">80/100 (Good Post)</span>
+                                                        </span>
+                                                      </div>
+                                                  </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                  </div>
+                                </div>
+                          </li>
+                        </ul>
+                      </div>
+                    </section>
+                    <h3>Review and Publish</h3>
+                    <section>
+                        <div class="card" style="width: 100%;">
+                            <ul class="list-group list-group-flush">
+                              <li class="list-group-item">
+                                <span class="title">Step 5 : Review and Publish</span>
+                              </li>
+                              <li class="list-group-item">
+                                 <span class="content">Review</span>
+                        
+                                  <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                      <span class="child-content" style="font-weight:550;">Campaign Name</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;">Campaign for Persona</span>
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Campaign Date</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;">12 September 2018 - 31 September 2018</span>
+                                    </div>
+                                  </div>
+                        
+                                  <hr style="margin-top: 5px; margin-bottom: 25px;">  
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Ad Group Name</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;">Awarness Group Ad</span>
+                                    </div>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Ad group start date</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;">12 September 2018</span>
+                                    </div>
+                                  </div>
+                                  <div class="row margin-bettwen-row" >
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Add group bid</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;">Automatic Bid</span>
+                                    </div>
+                                  </div>
+                                  <div class="row margin-bettwen-row">
+                                    <div class="col-md-3">
+                                        <span class="child-content" style="font-weight:550;">Audience Targeting</span>
+                                    </div>
+                                    <div class="col-md-8">
+                                        <span class="child-content" style="font-weight:550;">1 Audience Targeting</span>
+                                  </div>
+                        
+                                  <div class="row margin-bettwen-row">
+                                      <div class="row" style="margin:0px; padding: 0px; margin-left:5px;border-bottom: 1px solid #bbb9b9; margin-top:30px;">
+                                          <div class="col-md-2 tweet-list-img" style="margin:0px; padding: 0px;">
+                                            <div class="row" style="margin:0px;">
+                                                <div class="col-md-2" style="margin:0px; padding: 0px">
+                                                    <img src="https://pbs.twimg.com/profile_images/781019876815212544/c-YHyJt-_normal.jpg" class="img-circle" style="width: 50px;  margin-left:10px;">
+                                                </div>
+                                            </div>
+                                          </div>
+                                          <div class="col-md-9 tweet-list-content" style="margin:0px; padding: 0px">
+                                            <div class="tweet-list-header">
+                                               UNIKOM CodeLabs &nbsp;@UnikomCodelabs
+                                            </div>
+                                            <div class="tweet">
+                                                <p>Hello nikmati promo cashback dari kita hingga 20% mulai dari hari ini sampe minggu depan #CodelabsCashback </p>
+                                            </div>
+                                          </div>
+                                          <div class="row" style="margin-bottom:10px;">
+                                              <div class="col-md-4">
+                                                  <img src="https://assets.adidas.com/images/w_600,f_auto,q_auto/0ffa27e83b4f44b4821ba8b20082b44b_9366/Solarboost_Shoes_Black_CQ3168_01_standard.jpg" class="img-responsive" style="width: 40px;  margin-left:40px;">
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                                  <div class="row margin-bettwen-row">
+                                      <div class="col-md-4" style="float:right;">
+                                          <button class="btn btn-primary" style="float:right; margin-right:30px;" ng-click="$ads.cancel()">Publish</button>
+                                      </div>
+                                  </div>
+                              </li>
+                            </ul>
+                          </div>
+                    </section>
+                </div>
+      </div>
+      <div class="modal-footer flex-container-column">
+      </div>
+      <script>
+            $("#example-vertical").steps({
+                  headerTag: "h3",
+                  bodyTag: "section",
+                  transitionEffect: "slideLeft",
+                  stepsOrientation: "vertical"
+              });
+  
+          function showDates(){
+              $('#dates').css('display', '');
+          }
+          function closeDates(){
+              $('#dates').css('display', 'none');
+          }
+          function showAges(){
+              $('#ages').css('display', '');
+          }
+          function closeAges(){
+              $('#ages').css('display', 'none');
+          }
+        </script>
+    <script type="text/javascript">
+      flatPickrElement = document.getElementById('date-budget1')
+      flatPickrElement2 = document.getElementById('date-budget2')
+      flatPickrElement3 = document.getElementById('ad_date1')
+      flatPickrElement4 = document.getElementById('ad_date2')
+      flatpickr(flatPickrElement, {
+        // noCalendar: true,
+        minDate: 'today'
+      })
+      flatpickr(flatPickrElement2, {
+        // noCalendar: true,
+        minDate: 'today'
+      })
+      flatpickr(flatPickrElement3, {
+        // noCalendar: true,
+        minDate: 'today'
+      })
+      flatpickr(flatPickrElement4, {
+        // noCalendar: true,
+        minDate: 'today'
+      })
+      // $('#datetimepicker').datetimepicker({
+      //   format: 'dd/MM/yyyy hh:mm:ss',
+      //   language: 'pt-BR'
+      // });
+      // $('#datetimepicker2').datetimepicker({
+      //   format: 'dd/MM/yyyy hh:mm:ss',
+      //   language: 'pt-BR'
+      // });
+    </script>

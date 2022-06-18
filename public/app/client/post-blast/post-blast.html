@@ -1,0 +1,115 @@
+<style type="text/css">
+  .post-options {
+    width: 100%;
+  }
+
+  #tweet-btn-container {
+    margin-top: 10px;
+  }
+
+  #score {
+    float: right;
+    margin-left: 10px;
+    margin-bottom: 10px;
+  }
+
+  #twit,
+  #pics {
+    margin-top: 5px;
+    text-align: center;
+  }
+
+  #twit-bold {
+    font-weight: bold;
+  }
+
+  #bestTimeLabel span,
+  #twit,
+  #pics {
+    background: #0e9ffb;
+    color: #fff;
+    padding: 3px 7px 3px 7px;
+    box-sizing: border-box;
+    border-radius: 12px;
+  }
+
+  #tweet-btn-container {
+    display: -webkit-flex;
+    display: -moz-flex;
+    display: -ms-flex;
+    display: -o-flex;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
+  }
+
+  @media screen and (max-width: 460px) {
+    #score {
+      float: left;
+      margin-top: -10px;
+      transform: translateX(-10px);
+    }
+    #tweet-btn-container {
+      justify-content: center;
+    }
+  }
+</style>
+<div id="main-wrapper" style="margin-bottom:10px">
+  <div class="row">
+    <div class="col-md-6 m-t-lg col-md-offset-3">
+      <div class="panel panel-white">
+        <div class="panel-body">
+          <form name="tweet">
+            <div class="post">
+              <textarea id="tweet" class="form-control" onChange="check()" required placeholder="What's Happening?" ng-model="postBlast.post.tweet" ng-change="postBlast.calLength(postBlast.post.tweet)" style="resize:none" rows="4=6"></textarea>
+              <button ng-click="postBlast.addFormatMention()" type="button" style="margin-top: 10px; padding-left: 15px !important; padding-right: 15px !important; border-radius: 50px !important;" class="btn btn-primary btn-addon m-b-sm btn-rounded"><i class="fa fa-at"></i> Add format mention</button>
+              <div id="score">
+                <div id="twit" style="display:none">
+                  <span><span id="twit-bold"></span></span>
+                </div>
+              </div>
+              <div class="post-options">
+                <p>Select Category : </p>
+                <select style="width: 30%; margin-left: 10px;" id="selectedCategory" ng-model="category" class="form-control" ng-change="postBlast.getFollowerCategory()">
+                  <option ng-repeat="c in postBlast.categories" value="{{c.categoryName}}">{{c.categoryName}}</option>
+                </select>
+              </div>
+              <div id="tweet-btn-container">
+                <button ng-disabled="tweet.$invalid" id="tweet-btn" class="btn btn-primary btn-social" ng-click="postBlast.seeTweet()">
+                     ({{postBlast.length}}) See Post
+                 </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<style type="text/css">
+  .hmm-list {
+    max-height: 200px;
+    overflow-y: scroll;
+  }
+</style>
+<div ng-if="postBlast.listTweet.length > 0" class="col-md-6 col-md-offset-3 panel panel-body">
+  <div class="blast-list__title">
+    SEND POST TO CATEGORY {{postBlast.selectedCategory | uppercase}}
+  </div>
+  <div class="hmm-list">
+    <div class="blast-list__tweet" ng-repeat="list in postBlast.listTweet">
+      <div class="blast-list__tweet-img">
+        <img ng-src="{{list.image}}" alt="user photo profile">
+      </div>
+      <div class="blast-list__tweet-content">
+        <p>To :&nbsp;<strong>{{list.to}}</strong></p>
+        <p>Post :&nbsp;{{list.tweet}}</p>
+      </div>
+    </div>
+  </div>
+
+
+  <button style="margin-top: 20px" class="btn btn-primary pull-right btn-social" ng-click="postBlast.blastTweet(postBlast.listTweet)">
+    Blast Post
+  </button>
+</div>

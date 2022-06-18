@@ -1,0 +1,443 @@
+<script>
+  var ctx = $("#myChart");
+
+  flatpickr('.flatpickr', {
+    minDate: "today"
+  })
+
+  $.get(location.origin + '/api/user/besttime')
+    .then(createChart);
+
+  function parseDataTime(rawDataTime) {
+    var bestTime = []
+    for (prop in rawDataTime) {
+      bestTime.push(rawDataTime[prop]);
+    }
+    return bestTime
+  }
+
+  function findBestTime(data, rawDataTime) {
+    var suggestTime = Math.max.apply(null, data);
+    let best
+    for (prop in rawDataTime) {
+      if (rawDataTime[prop] === suggestTime) {
+        if (prop === 't0to3') {
+          best = '02.00';
+        }
+        if (prop === 't3to6') {
+          best = '05.00';
+        }
+        if (prop === 't6to9') {
+          best = '08.00';
+        }
+        if (prop === 't9to12') {
+          best = '10.00';
+        }
+        if (prop === 't12to15') {
+          best = '14.00';
+        }
+        if (prop === 't15to18') {
+          best = '15.00';
+        }
+        if (prop === 't18to21') {
+          best = '19.00';
+        }
+        if (prop === 't21to24') {
+          best = '21.00';
+        }
+      }
+    }
+    return best
+  }
+
+  function createChart(response) {
+    var data = response.data;
+    var dummyDataFB = {
+      t0to3: 60,
+      t3to6: 70,
+      t6to9: 200,
+      t9to12: 300,
+      t12to15: 250,
+      t15to18: 230,
+      t18to21: 400,
+      t21to24: 100
+    }
+    var dummyDataInsta = {
+      t0to3: 90,
+      t3to6: 80,
+      t6to9: 190,
+      t9to12: 200,
+      t12to15: 150,
+      t15to18: 230,
+      t18to21: 200,
+      t21to24: 169
+    }
+    // console.log(data);
+    var bestTime = [];
+    for (prop in data) {
+      bestTime.push(data[prop]);
+    }
+
+    dataFB = {
+      // time : [26,14,16,200,412,250,100,50],
+      time: [],
+      best: ''
+    }
+
+    dataInsta = {
+      time: [],
+      best: ''
+    }
+
+    dataFB.time = parseDataTime(dummyDataFB)
+    dataFB.best = findBestTime(dataFB.time, dummyDataFB)
+    dataInsta.time = parseDataTime(dummyDataInsta)
+    dataInsta.best = findBestTime(dataInsta.time, dummyDataInsta)
+
+    // find best time
+    var suggestTime = Math.max.apply(null, bestTime);
+
+    var best = '';
+    for (prop in data) {
+      if (data[prop] === suggestTime) {
+        if (prop === 't0to3') {
+          best = '02.00';
+        }
+        if (prop === 't3to6') {
+          best = '05.00';
+        }
+        if (prop === 't6to9') {
+          best = '08.00';
+        }
+        if (prop === 't9to12') {
+          best = '10.00';
+        }
+        if (prop === 't12to15') {
+          best = '14.00';
+        }
+        if (prop === 't15to18') {
+          best = '15.00';
+        }
+        if (prop === 't18to21') {
+          best = '19.00';
+        }
+        if (prop === 't21to24') {
+          best = '21.00';
+        }
+      }
+    }
+    var myChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['00.00-03.00', '03.00-06.00', '06.00-09.00', '09.00-12.00', '12.00-15.00', '15.00-18.00', '18.00-21.00', '21.00-00.00'],
+        datasets: [{
+            // label: 'Best Time to Tweets at '+best,
+            label: best + '\nTwitter',
+            data: bestTime,
+            borderWidth: 1,
+            lineTension: 0.1,
+            backgroundColor: "transparent",
+            borderColor: "#1976D2",
+            borderCapStyle: 'butt',
+            borderJoinStyle: 'miter',
+            pointBorderColor: "rgba(75,192,192,1)",
+            pointBackgroundColor: "#fff",
+            pointBorderWidth: 1,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+            pointHoverBorderColor: "rgba(220,220,220,1)",
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+          }
+          // ,
+          // {
+          //   label: dataFB.best + '\nFacebook',
+          //   data: dataFB.time,
+          //   borderWidth: 1,
+          //   lineTension: 0.1,
+          //   backgroundColor: "transparent",
+          //   borderColor: "#19d137",
+          //   borderCapStyle: 'butt',
+          //   borderJoinStyle: 'miter',
+          //   pointBorderColor: "rgba(75,192,192,1)",
+          //   pointBackgroundColor: "#fff",
+          //   pointBorderWidth: 1,
+          //   pointHoverRadius: 5,
+          //   pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          //   pointHoverBorderColor: "rgba(220,220,220,1)",
+          //   pointHoverBorderWidth: 2,
+          //   pointRadius: 1,
+          //   pointHitRadius: 10,
+          // },
+          // {
+          //   label: dataInsta.best + '\nInstagram',
+          //   data: dataInsta.time,
+          //   borderWidth: 1,
+          //   lineTension: 0.1,
+          //   backgroundColor: "transparent",
+          //   borderColor: "#d1187e",
+          //   borderCapStyle: 'butt',
+          //   borderJoinStyle: 'miter',
+          //   pointBorderColor: "rgba(75,192,192,1)",
+          //   pointBackgroundColor: "#fff",
+          //   pointBorderWidth: 1,
+          //   pointHoverRadius: 5,
+          //   pointHoverBackgroundColor: "rgba(75,192,192,1)",
+          //   pointHoverBorderColor: "rgba(220,220,220,1)",
+          //   pointHoverBorderWidth: 2,
+          //   pointRadius: 1,
+          //   pointHitRadius: 10,
+          // }
+        ]
+      },
+      options: {
+        legend: {
+          display: true,
+          position: 'right',
+
+        },
+        title: {
+          display: true
+        },
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
+
+    console.log(myChart.generateLegend());
+
+  }
+
+  var snt = $("#sentiment");
+  $.get(location.origin + '/api/sentiment')
+    .then(createSentiment);
+
+  function createSentiment(response) {
+    console.log(response);
+    var negatif = (response.negatif / (response.negatif + response.positif)) * 100;
+    var positif = (response.positif / (response.negatif + response.positif)) * 100;
+    var data = {
+      labels: [
+        "Negative Thought",
+        "Positive Thought"
+      ],
+      datasets: [{
+        data: [negatif, positif],
+        backgroundColor: [
+          "#27ae60",
+          "#c0392b"
+        ],
+        hoverBackgroundColor: [
+          "#27ae60",
+          "#c0392b"
+        ]
+      }]
+    }
+    var myPieChart = new Chart(snt, {
+      type: 'pie',
+      data: data,
+      options: {
+        responsive: true,
+        legend: {
+          position: 'right',
+        },
+        title: {
+          display: false,
+          text: 'Chart.js Doughnut Chart'
+        },
+        animation: {
+          animateScale: true,
+          animateRotate: true
+        },
+        tooltips: {
+          callbacks: {
+            label: function(tooltipItem, data) {
+              var dataset = data.datasets[tooltipItem.datasetIndex];
+              var total = dataset.data.reduce(function(previousValue, currentValue, currentIndex, array) {
+                return previousValue + currentValue;
+              });
+              var currentValue = dataset.data[tooltipItem.index];
+              var precentage = Math.floor(((currentValue / total) * 100) + 0.5);
+              return precentage + "%";
+            }
+          }
+        }
+      }
+    });
+  }
+</script>
+
+<div id="dashboard">
+  <div class="page-header-title">
+    <h3>Dashboard</h3>
+    <hr>
+  </div>
+  <div class="row">
+    <div class="col-lg-8 col-md-6">
+      <div class="panel info-box panel-white">
+        <div class="title">
+          <h3>Best Time to Post</h3>
+          <span>Your Followers Active Time</span>
+        </div>
+        <canvas id="myChart"></canvas>
+      </div>
+    </div>
+
+    <div style='panel info-box panel-white post-categories' class="col-lg-4 col-md-6">
+
+      <div class="panel info-box panel-white post-categories">
+        <div class="panel-body">
+          <div class="info-box-icon">
+            <img src="../images/dashboard/ic-foods.png" alt="Foods">
+          </div>
+          <div class="info-box-stats">
+            <p class="counter">{{dashboard.count.Foods}}</p>
+            <span class="info-box-title">User in Food Persona</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel info-box panel-white post-categories">
+        <div class="panel-body">
+          <div class="info-box-icon">
+            <img src="../images/dashboard/ic-travel.png" alt="Travel">
+          </div>
+          <div class="info-box-stats">
+            <p class="counter">{{dashboard.count.Travel}}</p>
+            <span class="info-box-title">User in Travel Persona</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel info-box panel-white post-categories">
+        <div class="panel-body">
+          <div class="info-box-icon">
+            <img src="../images/dashboard/ic-fashion.png" alt="Fashion">
+          </div>
+          <div class="info-box-stats">
+            <p class="counter">{{dashboard.count.Life}}</p>
+            <span class="info-box-title">User in Fashion Persona</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="panel info-box panel-white post-categories">
+        <div class="panel-body">
+          <div class="info-box-icon">
+            <img src="../images/dashboard/ic-sports.png" alt="Sport">
+          </div>
+          <div class="info-box-stats">
+            <p class="counter">{{dashboard.count.Sports}}</p>
+            <span class="info-box-title">User in Sports Persona</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="row">
+    <div class="col-lg-4 col-md-5">
+      <div class="panel info-box panel-white infografi-2">
+        <div class="title">
+          <h3>Sentiment Analysis</h3>
+          <span>What people think about your product</span>
+        </div>
+        <canvas id="sentiment"></canvas>
+      </div>
+    </div>
+    <!-- <div class="col-lg-4 col-md-5">
+      <div id="latest-post" class="panel info-box panel-white infografi-2">
+        <div class="title">
+          <h3>Your Latest Post</h3>
+          <span> </span>
+        </div>
+        <div id="post-list">
+          <div class="post-item" ng-repeat="postData in dashboard.post.postlist">
+
+            <div class="photo-profile">
+              <img class="img-circle img-responsive" src={{dashboard.post.profilePhoto}} alt="">
+            </div>
+
+            <div class="post-detail">
+
+              <div class="profile-detail">
+                <div class="profile-info">
+                  <span class="profile-name">{{dashboard.post.profileName}}</span>
+                  <span class="profile-id">{{dashboard.post.profileId}}</span>
+                </div>
+                <div class="profile-time">
+                  <span>{{postData.time}}</span>
+                </div>
+              </div>
+
+              <p class="post-desc">{{postData.post}}</p>
+              <span class="post-picture-list" ng-repeat="image in postData.picture">
+                  <img class="post-picture-thumbnails" src="{{image}}" alt="">
+                </span>
+
+              <div class="details">
+                <span>
+                    <img src="../images/dashboard/ic-comment.png" alt="">
+                    {{postData.comment}}
+                  </span>
+                <span>
+                    <img src="../images/dashboard/ic-love.png" alt="">
+                    {{postData.like}}
+                  </span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div> -->
+    <div class="col-lg-4 col-md-5">
+      <div id="trending-tag" class="panel info-box panel-white infografi-2">
+        <div class="title">
+          <h3>Trending</h3>
+          <div class="btn-group">
+            <a ng-model="categoryFilter.source" class="btn btn-default dropdown-toggle btn-select" data-toggle="dropdown">
+                <span class="selected">All</span>
+                <span class="caret"></span>
+              </a>
+            <ul class="dropdown-menu">
+              <li ng-click="resetFilter()">
+                <a>
+                    <span>All</span>
+                  </a>
+              </li>
+              <li ng-repeat="sosmed in dashboard.trend.categories" ng-click="selected()">
+                <a style="display:flex; justify-content:space-between">
+                    <i style="color:#2d92ff" class="{{sosmed.icon}}"></i>
+                    <span>{{sosmed.source}}</span>
+                  </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div id="trending-list">
+          <div class="trending-item" ng-repeat="(idx,value) in dashboard.trend.trends">
+            <span class="tren-index">{{idx+1}}</span>
+            <span class="trending"><a href="{{value.url}}" target="_blank">{{value.name}}</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+  $('#post-list').slimscroll({
+    height: "100%"
+  })
+  $('#trending-list').slimscroll({
+    height: "100%"
+  })
+</script>

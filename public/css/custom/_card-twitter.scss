@@ -1,0 +1,144 @@
+$card-white: #f5f5f5;
+$card-border: #E0E0E0;
+$card-gray: #aeaeae;
+$card-black: #4E5E6A;
+$margin-bottom: -32.5px;
+
+.twitter-card-container {
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.twitter-card {
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 10px !important;
+  margin: 20px 5px;
+}
+
+.twitter-card-head {
+  display: flex;
+  background-size: cover;
+  justify-content: space-around;
+  border-radius: 10px 10px 0 0;
+  height: 111px;
+  align-items: flex-end;
+
+  &__avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50% 50%;
+    border: 2px solid $card-border;
+    margin-bottom: $margin-bottom;
+  }
+
+  &__btn {
+    margin-bottom: -40.5px;
+
+    &--add {
+      background: $blue-login;
+      width: 50px;
+      height: 50px;
+      padding-top: 7px;
+      border-radius: 50%;
+      border: none;
+      color: #f5f5f5;
+      outline: none;
+      i {
+        font-size: 1.3em;
+      }
+
+      &:hover {
+        background: lighten($blue-login, 10%);        
+      }
+    }
+
+    &--space{
+      width: 50px;
+      height: 50px;
+    }
+  }
+}
+
+.twitter-card-body {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+
+  &__username {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+
+    &--detail:first-child {
+      color: $card-black;
+      font-size: 1.2em
+    }
+
+    &--detail {
+      color: $card-gray;
+    }
+  }
+
+  &__description {
+    margin-top: 10px;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 20px;
+    text-align: center;
+    color: $card-gray;
+  }
+
+  &__detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    width: 100%;
+    padding: 10px 20px;
+    margin-top: 20px;
+    border-top: 1px solid $card-border;
+
+    &--stats {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-content: center;
+      flex: 1;
+      color: #333;
+
+      div:first-child {
+        font-size:1em;
+        text-transform: capitalize;
+        color: $card-black;
+      }
+
+      div {
+        font-size: 1.3em;
+        color: $blue-login;
+      }
+    }
+  }
+}
+
+.shadow-1dp {
+  box-shadow: 0 1px 10px 0 #888;
+  transition: ease .3s;
+  &:hover {
+    box-shadow: 0 3px 10px 0 #888;
+    transition: ease .3s;    
+  }
+}

@@ -1,0 +1,78 @@
+<style>
+    .modal-organic{
+        width: 450px;
+        border: solid 1px #3883e2;
+        color: #000000;
+    }
+    .modal-organic:hover{
+        background: #3883e2;
+        color: white;
+    }
+    .modal-organic h2{
+       font-size: 18px;
+    }
+    .modal-organic p{
+       font-size: 12px;
+    }
+    .icons{
+        margin : 20px;
+        font-size: 40px;
+        margin-top:30px;
+    }
+    .icons-2{
+        margin : 10px;
+        margin-top:20px;
+    }
+    .modal-header h2{
+        margin:0px;
+    }
+    .link-modals{
+        text-decoration: none;
+    }
+</style>
+    <div class="modal-header">
+        <button type="button" class="close" ng-click="$ctrl.cancel()">&times;</button>
+        <div class="center-block" style="width: 100%; text-align: center">
+                <h2>Create Post</h2>
+        </div>
+        
+        <div id="sosmed-option">
+        </div>
+
+      </div>
+
+      <div class="modal-body" style="border:0px;">
+        <div>
+            <a class="link-modals"  ng-click="$ctrl.openOrganic()">
+              <div class="modal-organic center-block">
+                <div class="row">
+                    <div class="col-md-2">
+                        <h1 class="icons"><i class="menu-icon icon-pencil"></i></h1>
+                    </div>
+                    <div class="col-lg-9">
+                        <h2> Create Organic Post</h2>
+                        <p>Create organic post to distribute your  content to your audience</p>
+                    </div>
+                </div>
+            </div>
+        </a>
+        </div>
+        <div style="margin-top:20px;">
+                <a class="link-modals" ng-click="$ctrl.openAds()">
+                  <div class="modal-organic center-block">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <h1 class="icons-2"><img src="../../images/toa.png" alt="" style="width:50px"></h1>
+                        </div>
+                        <div class="col-lg-9">
+                            <h2> Create Ads Twitter</h2>
+                            <p>Create ads to distibute your  content to broader audience through twitter paid ads</p>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            </div>
+      </div>
+      <div class="modal-footer flex-container-column">
+      </div> 
+      

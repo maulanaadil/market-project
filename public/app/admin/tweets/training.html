@@ -1,0 +1,21 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-body clearfix">
+        <div class="table-responsive">
+          <table ng-table="training.tableTrainingTweets" datatable="" show-filter="true" class="display table" style="width: 100%; cellspacing: 0;">
+            <tr ng-repeat="tweet in $data">
+              <td title="'Tweet'" filter="{tweet: 'text'}" sortable="'tweet'"> {{tweet.tweet}} </td>
+              <td title="'Category'" filter="{categoryName: 'text'}" sortable="'categoryName'"> {{tweet.categoryName}} </td>
+              <td title="'Action'" width="12%" align="center">
+                <button class="btn btn-danger" ng-click="training.delete(tweet._id, $index)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

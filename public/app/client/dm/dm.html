@@ -1,0 +1,63 @@
+<ul class="list-unstyled" ng-if="dms.dm.length > 0">
+  <li class="timeline-item" ng-repeat="dm in dms.dm">
+    <div class="row">
+      <div class="col-sm-8 col-sm-offset-2 col-md-6 col-md-offset-3" style="margin-bottom:20px;">
+        <div class="panel panel--body">
+          <div class="panel--profile">
+            <div class="panel--profile__left">
+              <div class="panel--img">
+                <img ng-src="{{dm.sender.profile_image_url}}" alt="">
+              </div>
+              <div class="panel--name">
+                <a href="http://twitter.com/{{dm.denser.screen_name}}" target="_blank">
+                  <p>{{dm.sender.name}} <small>@{{dm.sender.screen_name}}</small></p>
+                </a>
+              </div>
+            </div>
+            <div class="panel--profile__right">
+              <small>Message at {{dm.created_at | date : 'MMM d, y H:mm'}}</small>
+            </div>
+          </div>
+          <div class="panel--status">
+            <p>{{dm.text}}</p>
+          </div>
+
+          <div class="panel--options">
+            <a class="btn btn-primary" ng-click="mentions.setMention(t.user.screen_name, $index)" data-toggle="modal" data-target=".modal-{{$index}}"><i class="icon-note"></i> Reply</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="modal fade modal-{{$index}}" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+        <div class="modal-content">
+          <form name="tweet">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="myLargeModalLabel">Send To {{dm.sender.name}}</h4>
+            </div>
+            <div class="modal-body">
+              <b>Message</b> <br>
+              <p> {{dm.text}} </p>
+              <br>
+              
+              <textarea id="tweet-{{$index}}" class="form-control" required placeholder="What's Happening?" ng-model="user.post.tweet"
+                style="resize:none" rows="4=6"></textarea>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+              <button ng-disabled="tweet.$invalid" id="tweet-btn{{$index}}" class="btn btn-primary pull-right btn-social" ng-click="dms.tweet($index, dm.sender.id)">Send</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </li>
+</ul>
+
+<div ng-if="dm.dm.length===0" class="no-data">
+  <h1>No Mentions found :(</h1>
+</div>

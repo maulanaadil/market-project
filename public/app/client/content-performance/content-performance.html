@@ -1,0 +1,205 @@
+<style scoped>
+    .container {
+        width: 32%;
+        box-sizing: border-box;
+        align-items: right;
+        /* width: 345px; */
+        display: flex;
+        /* height: 439px; */
+        padding: 4px;
+    }
+
+    .container>.content-area {
+        width: 100%;
+        padding: 24px;
+        padding-top: 28px;
+        padding-bottom: 12px;
+        border-radius: 5px;
+        background-color: #ffffff;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start
+    }
+
+    .container>.content-area .header {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .container>.content-area .header .performance {
+        display: flex;
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    .container>.content-area .header .performance h5 {
+        font-weight: 800;
+        margin-left: 8px;
+        font-size: 24px;
+        color: #66bb6a;
+    }
+
+    .container>.content-area .header>.performance img {
+        height: 10%;
+        width: 10%;
+    }
+
+
+    .container>.content-area .header .author {
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        margin-top: 25px;
+        align-items: center;
+
+    }
+
+    .container>.content-area .header .author img {
+        width: 30px;
+        height: 30px;
+
+    }
+
+    .container>.content-area .header .author .avatar {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+    }
+
+    .container>.content-area .header .author .avatar .author-name {
+        margin-left: 10px;
+        font-size: 12px;
+        color: #757575;
+    }
+
+
+    .container>.content-area .author .publish-date {
+        font-size: 12px;
+        color: #757575;
+    }
+
+
+    .container .text {
+        margin-top: 10px;
+    }
+
+    .container .text h5 {
+        font-weight: bold;
+    }
+
+    .container .text p {
+        /* width: 324px; */
+        /* height: 76px; */
+        padding-top: 16px;
+        font-family: Lato;
+        font-size: 14px;
+        font-weight: 400;
+        font-style: normal;
+        font-stretch: normal;
+        line-height: normal;
+        letter-spacing: normal;
+    }
+
+
+    .container #footer {
+        margin-top: 20px;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+
+    .container #footer .total-sentiment {
+        margin-right: 30px;
+    }
+
+    .container #footer .title {
+        font-size: 14px;
+        opacity: 0.4;
+    }
+
+
+    .super-rare-button {
+        width: 100%;
+        /* height: 37px; */
+        /* background: #3883e2; */
+        box-shadow: none;
+        color: #3883e2;
+        border: 1px solid #3883e2;
+        font-size: 14px;
+        cursor: pointer;
+    }
+
+    .content-title {
+        font-size: 12px;
+    }
+
+    .content-total {
+        font-weight: 800;
+        font-size: 14px;
+    }
+</style>
+
+<div class="col-lg-12 col-md-5">
+    <div class="page-header-title">
+        <h3>Content Performance</h3>
+        <hr>
+    </div>
+    <div class="row">
+        <div class="col-md-4 container" style="margin:0;" ng-repeat="data in content.tweet">
+            <section class="content-area">
+                <section class="header">
+                    <div class="performance">
+                        <img src="../../images/thumb-up.svg" alt="">
+                        <h5>{{data.performance}}</h5>
+                    </div>
+                    <div class="author">
+                        <div class="avatar">
+                            <img width="10%" ng-src="{{content.profile.image_url}}" />
+                            <div class="author-name">
+                               {{content.profile.name}}
+                            </div>
+                        </div>
+                        <div class="publish-date" ng-bind="data.time | date:'MM/dd/yyyy'">
+                            
+                        </div>
+                    </div>
+                </section>
+                <section class="text">
+                    <p>
+                        {{data.text}}
+                    </p>
+                </section>
+                <img width="40px" height="40px" src="{{data.media_url}}" ng-if="data.media_url !== undefined"/>
+                <section id="footer" style="margin-bottom:10px">
+                    <div class="total-sentiment">
+                        <div class="content-title">
+                            Total Sentiment
+                        </div>
+                        <div class="content-total" ng-if="data.sentiment_score.good > data.sentiment_score.bad">
+                            {{data.sentiment_score.good * 100}}% Good
+                        </div>
+                        <div class="content-total" ng-if="data.sentiment_score.bad > data.sentiment_score.good">
+                            {{data.sentiment_score.bad * 100}}% Bad
+                        </div>
+                    </div>
+                    <div class="total-engagement">
+                        <div class="content-title">
+                            Total Engagement
+                        </div>
+                        <div class="content-total">
+                            {{data.engagement.total_engagement}}
+                        </div>
+                    </div>
+                </section>
+
+                <a class="btn super-rare-button" ui-sref="content-performance-detail({id : data.tweet_id})">
+                    Detailed Performance
+                </a>
+
+            </section>
+        </div>
+    </div>
+</div>

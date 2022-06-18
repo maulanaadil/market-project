@@ -1,0 +1,172 @@
+<div class="modal-header">
+  <button type="button" class="close" ng-click="$ctrl.cancel()">&times;</button>
+
+  <div id="sosmed-option">
+    <span class="sosmed-target">
+      <!-- <span><input type="checkbox"> <i class="fa fa-twitter"></i></span> -->
+    <span id="profile-info">
+    </span>
+    </span>
+  </div>
+
+</div>
+<div class="modal-body">
+  <div data="post-data" class="form-group">
+
+    <textarea ng-model="$ctrl.post.postText" ng-change="$ctrl.callLength($ctrl.post.postText)" class="form-control" rows="4" placeholder="Write something ..."></textarea>
+    <div id="post-picture-list" class="">
+      <span id="word-limit">{{$ctrl.length}}</span>
+      <div class="post-picture-list">
+        <div ng-repeat="img in $ctrl.post.postImages" class="post-img">
+          <img src="{{img.blob}}" alt="img.name">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div id="post-info">
+    <span id="post-tools">
+      <label class="btn btn-primary btn-transparent" data-toggle="tooltip" title="Attach Picture<br/>From Library">
+        <img src="../images/dashboard/ic-add-image.png" alt="add picture">
+        <input type="file" file-model="file_temp">
+      </label>
+    </span>
+  </div>
+</div>
+<div class="modal-footer flex-container-column">
+  <div id="option-section">
+    <div id="option">
+      <!-- <button ng-click="$ctrl.addFormatMention()" class="btn btn-primary btn-primary-custom">
+        <i class="fa fa-at"></i> Add Format Mention
+      </button> -->
+      <div id="post-score">
+        <span ng-show="$ctrl.post.postScore.text.value > 0">
+          <label for="">Text Score :</label> <span class="post-score">{{$ctrl.post.postScore.text.value}}/100 ({{$ctrl.post.postScore.text.summary}})</span>
+        </span>
+        <span ng-show="$ctrl.post.postScore.image.value != null">
+          <label for="">Image Quality :</label> <span class="post-score">{{$ctrl.post.postScore.image.value}}/100 ({{$ctrl.post.postScore.image.summary}})</span>
+        </span>
+      </div>
+
+      <span class="">
+        <label for="">Persona :</label>
+      <select ng-disabled="$ctrl.post.postText==''" id="selectedCategory" class="form-control" ng-change="$ctrl.getFollowerCategory()" ng-model="$ctrl.post.category">
+          <option ng-repeat="c in $ctrl.categories" value="{{c.categoryName}}">Persona {{c.categoryName}}</option>
+        </select>
+      </span>
+    </div>
+    <div id="schedule-option">
+      <span>Scheduled : </span>
+      <div>
+        <form>
+          <div class="form-group">
+            <span class="radio">
+              <label>
+                <input ng-disabled="$ctrl.post.category == ''" required checked name="schedule" type="radio" ng-click="$ctrl.setScheduledOff()" value="false">Now
+              </label>
+            </span>
+            <span class="radio">
+              <label>
+                <input ng-disabled="$ctrl.post.category == ''" name="schedule" type="radio" ng-model="$ctrl.post.scheduled" value="true">Scheduled at :
+              </label>
+            </span>
+          </div>
+        </form>
+        <div class="" ng-hide="$ctrl.post.scheduled == false">
+          <div id="suggest-time">
+            <span>Suggest post this at</span>
+            <span>{{$ctrl.bestOftheBestTime}}</span>
+          </div>
+          <input id="date-schedule" class="flatpickr form-flatpickr form-control" placeholder="Pick a date and time" data-mindate="today" data-enabletime="true" ng-model="$ctrl.post.time" data-time_24hr="true" data-timeFormat="H:i">
+        </div>
+      </div>
+    </div>
+  </div>
+  <style type="text/css">
+    .hmm-list {
+      max-height: 200px;
+      overflow-y: scroll;
+    }
+
+    .blast-list__tweet-img {
+      flex: none;
+      width: 60px;
+      align-items: center;
+    }
+
+    .blast-list__tweet-img img {
+      width: 100%;
+    }
+
+    .blast-list__tweet-content {
+      text-align: left;
+      align-items: flex-start;
+    }
+  </style>
+  <div ng-show="$ctrl.listPost.length > 0">
+    <div class="blast-list__title">
+      Send the Post to Followers That  Similar to the Persona
+    </div>
+    <div class="hmm-list">
+      <div class="blast-list__tweet" ng-repeat="list in $ctrl.listPost">
+        <div class="blast-list__tweet-img">
+          <img ng-src="{{list.image}}" alt="user photo profile">
+        </div>
+        <div class="blast-list__tweet-content">
+          <p>To :&nbsp;<strong>{{list.to}}</strong></p>
+          <p>Post :&nbsp;{{list.tweet}}</p>
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <button style="margin-top: 20px" class="btn btn-primary pull-right" ng-click="$ctrl.sendPost($ctrl.post)">
+    Post
+  </button>
+</div>
+
+<script type="text/javascript">
+  $(document).ready(function() {
+    $('[data-toggle="tooltip"]').tooltip({
+      'placement': 'top',
+      'html': true
+    });
+
+    let setTime = $('#suggest-time span:nth-child(2)').text()
+    flatPickrElement = document.getElementById('date-schedule')
+    flatpickr(flatPickrElement, {
+      // noCalendar: true,
+      minDate: 'today'
+    })
+    flatPickrElement.value = setTime
+
+    $('#blast-toggle input[type="checkbox"]').on('change', function() {
+      blastStatus = $('#blast-toggle > span')
+      if ($(this).is(':checked')) {
+        blastStatus.html('Disable Post Blast')
+      } else {
+        blastStatus.html('Enable Post Blast')
+      }
+    })
+
+
+    $('textarea[ng-model="$ctrl.post.postText"].form-control').on("change", function() {
+      angular.element($(this)).scope().postScore($(this).val())
+    })
+
+    $('textarea[ng-model="$ctrl.post.postText"].form-control').on("input", function() {
+      text = $(this).val()
+      if (text.length <= 140) {
+        storeText = text
+        $('div[data="post-data"]').css({
+          'border': '1px solid #bdc5c9'
+        })
+      } else {
+        $(this).val(storeText)
+        $('div[data="post-data"]').css({
+          'border': '1px solid #ff7272'
+        })
+      }
+    });
+
+  })
+</script>

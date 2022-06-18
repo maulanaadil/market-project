@@ -1,0 +1,9 @@
+extends layout-client
+
+block content
+  
+  if !user
+    include user/login
+  else
+    div(ng-app='TwikipediaClient')
+      include user/home
